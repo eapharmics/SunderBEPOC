@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.enviroapps.eapharmics.vo.dataaccessevaluation.DataAccessEvaluationVO" table="EAVW_PS_GRAPH_GENERATOR">
+        <id name="productId" column="PRODUCT_ID" type="java.lang.Long"/>
+        <property name="productCode" column="PRODUCT_CODE" type="java.lang.String"/>
+	    <property name="productName" column="PRODUCT_NAME" type="java.lang.String"/>
+		<property name="productDescription" column="PRODUCT_DESCRIPTION" type="java.lang.String"/>
+		<property name="studyId" column="STUDY_ID" type="java.lang.String"/>
+	    <property name="lotNumber" column="LOT_NUMBER" type="java.lang.String"/>
+		<property name="onStabilityDate" column="ON_STABILITY_DATE" type="java.util.Date"/>
+		<property name="prdStudyBatchId" column="PRD_STUDY_BATCH_ID" type="java.lang.Long"/>		
+		<property name="normalEnvConditionsCode" column="NORMAL_ENV_CONDITIONS_CODE" type="java.lang.String"/>
+		<property name="challengeConditionsCode" column="CHALLENGE_CONDITIONS_CODE" type="java.lang.String"/>
+		<property name="fillCode" column="FILLER_CODE" type="java.lang.String"/>
+		<property name="containerCode" column="CONTAINER_CODE" type="java.lang.String"/>
+ </class>
+</hibernate-mapping>

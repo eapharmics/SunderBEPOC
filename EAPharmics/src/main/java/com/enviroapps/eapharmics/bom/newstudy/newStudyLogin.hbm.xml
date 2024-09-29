@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.enviroapps.eapharmics.bom.newstudy.NewStudyProduct" table="EA_PRD_PRODUCT_STUDY" lazy="true"
+		optimistic-lock="version">
+		<id name="prdStudyBatchId" column="PRD_STUDY_BATCH_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">PRD_STUDY_BATCH_ID_SEQ</param>
+			</generator>
+		</id>
+		<version name="version" column="VERSION"/>
+		<property name="productId" column="PRODUCT_ID" type="java.lang.Long"/>
+		<property name="studyId" column="STUDY_ID" type="java.lang.String"/>
+		<property name="proprietaryStudyId" column="PROPREITARY_STUDY_ID" type="java.lang.String"/> 
+		<property name="studyText" column="STUDY_TEXT" type="java.lang.String"/>
+		<property name="lotNumber" column="LOT_NUMBER" type="java.lang.String"/>
+		<property name="expiry" column="EXPIRY" type="java.lang.String"/>
+		<property name="formulaNumber" column="FORMULA_NUMBER" type="java.lang.String"/>
+		<property name="batchSize" column="BATCH_SIZE" type="java.lang.String"/>
+		<property name="packageDate" column="PACKAGE_DATE" type="java.util.Date"/>
+		<property name="mfgDate" column="MFG_DATE" type="java.util.Date"/>
+		<property name="onStabilityDate" column="ON_STABILITY_DATE" type="java.util.Date"/>
+		<property name="packageSizeCode" column="PACKAGE_SIZE_CODE" type="java.lang.String"/>
+		<property name="containerCode" column="CONTAINER_CODE" type="java.lang.String"/>
+		<property name="containerResinCode" column="CONTAINER_RESIN_CODE" type="java.lang.String"/>
+		<property name="containerManufacturerCode" column="CONTAINER_MANUFACTURER_CODE" type="java.lang.String"/>
+		<property name="closureCode" column="CLOSURE_CODE" type="java.lang.String"/>
+		<property name="closureManufacturerCode" column="CLOSURE_MANUFACTURER_CODE" type="java.lang.String"/>
+		<property name="innerSealCode" column="INNERSEAL_CODE" type="java.lang.String"/>
+		<property name="linerCode" column="LINER_CODE" type="java.lang.String"/>
+		<property name="liddingCode" column="LIDDING_FOIL_CODE" type="java.lang.String"/>
+		<property name="formingCode" column="FORMING_FOIL_CODE" type="java.lang.String"/>
+		<property name="fillerManufacturerCode" column="FILLER_MANUFACTURER_CODE" type="java.lang.String"/>
+		<property name="dessicantManufacturerCode" column="DESICCANT_MANUFACTURER_CODE" type="java.lang.String"/>
+		<property name="linerManufacturerCode" column="LINER_MANUFACTURER_CODE" type="java.lang.String"/>
+		<property name="blisterCode" column="BLISTER_CODE" type="java.lang.String"/>
+		<property name="fillerCode" column="FILLER_CODE" type="java.lang.String"/>
+		<property name="desiccantCode" column="DESICCANT_CODE" type="java.lang.String"/>
+		<property name="otherCode1" column="OTHER_CODE_1" type="java.lang.String"/>
+		<property name="otherManufacturerCode1" column="OTHER_MANUFACTURER_CODE_1" type="java.lang.String"/>
+		<property name="otherCode2" column="OTHER_CODE_2" type="java.lang.String"/>
+		<property name="otherManufacturerCode2" column="OTHER_MANUFACTURER_CODE_2" type="java.lang.String"/>
+		<property name="manufacturingSiteCode" column="MANUFACTURING_SITE_CODE" type="java.lang.String"/>
+		<property name="packagingSiteCode" column="PACKAGING_SITE_CODE" type="java.lang.String"/>
+		<property name="gallerySettingsCodeId" column="GALLERY_SETTINGS_CODE_ID" type="java.lang.Long"/>
+		<property name="studyStatus" column="STUDY_STATUS" type="java.lang.String"/>
+		<property name="userDefinedColumn1" column="USER_DEFINED_COLUMN_1" type="java.lang.String"/>
+		<property name="userDefinedColumn2" column="USER_DEFINED_COLUMN_2" type="java.lang.String"/>
+		<property name="userDefinedColumn3" column="USER_DEFINED_COLUMN_3" type="java.lang.String"/>
+		<property name="userDefinedColumn4" column="USER_DEFINED_COLUMN_4" type="java.lang.String"/>
+		<property name="userDefinedColumn5" column="USER_DEFINED_COLUMN_5" type="java.lang.String"/>
+		<property name="userDefinedColumn6" column="USER_DEFINED_COLUMN_6" type="java.lang.String"/>
+		<property name="userDefinedColumn7" column="USER_DEFINED_COLUMN_7" type="java.lang.String"/>
+		<property name="userDefinedColumn8" column="USER_DEFINED_COLUMN_8" type="java.lang.String"/>
+		<property name="userDefinedColumn9" column="USER_DEFINED_COLUMN_9" type="java.lang.String"/>
+		<property name="userDefinedColumn10" column="USER_DEFINED_COLUMN_10" type="java.lang.String"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+		<property name="labelId" column="LABEL_ID" type="java.lang.Long"/>
+		<property name="approvalLevel1" column="APPROVAL_LEVEL1_YN" type="yes_no"/>
+		<property name="approvalLevel1By" column="APPROVED_LEVEL1_BY" type="java.lang.Long"/>
+		<property name="approvalLevel1Date" column="APPROVED_LEVEL1_DATE" type="java.util.Date"/>
+		<property name="approvalLevel2" column="APPROVAL_LEVEL2_YN" type="yes_no"/>
+		<property name="approvalLevel2By" column="APPROVED_LEVEL2_BY" type="java.lang.Long"/>
+		<property name="approvalLevel2Date" column="APPROVED_LEVEL2_DATE" type="java.util.Date"/>
+        <property name="locationId" column="LOCATION_ID" type="java.lang.Long"/>		
+		<set name="rawMaterials" lazy="false" inverse="true" mutable="true" cascade="all" optimistic-lock="true" embed-xml="true" order-by="PRD_STUDY_RAW_MATERIAL_ID asc">
+			<key column="PRD_STUDY_BATCH_ID" on-delete="cascade"/>
+			<one-to-many class="com.enviroapps.eapharmics.bom.newstudy.NewStudyRawMaterial" not-found="exception" embed-xml="true" />
+		</set>
+		<set name="intervals" lazy="false" inverse="true" mutable="true" cascade="all" optimistic-lock="true" order-by="INTERVAL_VALUE asc" embed-xml="true">
+			<key column="PRD_STUDY_BATCH_ID" on-delete="cascade"/>
+			<one-to-many class="com.enviroapps.eapharmics.bom.newstudy.NewStudyInterval" not-found="exception" embed-xml="true" />
+		</set>
+		<one-to-one name="studyCondition" class="com.enviroapps.eapharmics.bom.newstudy.NewStudyCondition" constrained="true" property-ref="prdStudyBatchId"/>
+	</class>
+	<class name="com.enviroapps.eapharmics.bom.newstudy.NewStudyRawMaterial" table="EA_PRD_STUDY_RAW_MATERIALS" >
+		<id name="prdStudyRawMaterialId" column="PRD_STUDY_RAW_MATERIAL_ID" type="java.lang.Long" >
+			<generator class="sequence">
+				<param name="sequence">PRD_STUDY_RAW_MATERIAL_ID_SEQ </param>
+			</generator>
+		</id>
+		<property name="prdStudyBatchId" column="PRD_STUDY_BATCH_ID" type="java.lang.Long"/>
+		<property name="productFormulationId" column="PRODUCT_FORMULATION_ID" type="java.lang.Long"/>
+		<property name="mfgSupplierCode" column="MFG_SUPPLIER_CODE" type="java.lang.String"/>
+		<property name="lotNumber" column="LOT_NUMBER" type="java.lang.String"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+		<property name="productFormulation" column="PRODUCT_FORMULATION" type="java.lang.String"/>
+	</class>
+	<class name="com.enviroapps.eapharmics.bom.newstudy.NewStudyCondition" table="EA_PRD_STUDY_CONDITIONS">
+		<id name="prdStudyConditionId" column="PRD_STUDY_CONDITION_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">PRD_STUDY_CONDITION_ID_SEQ</param>
+			</generator>
+		</id>
+		<property name="prdStudyBatchId" column="PRD_STUDY_BATCH_ID" type="java.lang.Long"/>
+		<property name="studyCondition" column="STUDY_CONDITION" type="java.lang.String"/>
+     	<property name="studyReasonCode" column="STUDY_REASON_CODE" type="java.lang.String"/>
+		<property name="studyTestInterval" column="STUDY_TEST_INTERVAL" type="java.lang.String"/>
+		<property name="intialTestDate" column="INTIAL_TEST_DATE" type="java.util.Date"/>
+		<property name="intervalLabel" column="INTERVAL_LABEL" type="java.lang.String"/>
+		<property name="protocolId" column="PROTOCOL_ID" type="java.lang.Long"/>
+		<property name="fillUnits" column="FILL_UNITS" type="java.lang.Long"/>
+		<property name="unitOfMeasurement" column="UNIT_OF_MEASUREMENT" type="java.lang.String"/>
+		<property name="totalValue" column="TOTAL_VALUE" type="java.lang.Long"/>
+		<property name="extraValue" column="EXTRA_VALUE" type="java.lang.Long"/>
+		<property name="extraLabelCount" column="EXTRA_LABEL_COUNT" type="int"/>
+		<property name="initialValue" column="INITIAL_VALUE" type="java.lang.Long"/>
+		<property name="studyInventoryComment" column="STUDY_INVENTORY_COMMENT" type="java.lang.String"/>
+		<property name="labelFormat" column="LABEL_FORMAT" type="java.lang.String"/>
+		<property name="labelColor" column="LABEL_COLOR" type="java.lang.String"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+		<property name="studyLengthCode" column="STUDY_LENGTH_CODE" type="java.lang.String"/>
+		<property name="normalEnvConditionsCode" column="NORMAL_ENV_CONDITIONS_CODE" type="java.lang.String"/>
+		<property name="challengeConditionsCode" column="CHALLENGE_CONDITIONS_CODE" type="java.lang.String"/>
+		<property name="storageLocationCode" column="STORAGE_LOCATION_CODE" type="java.lang.String"/>
+	</class>
+	<class name="com.enviroapps.eapharmics.bom.newstudy.NewStudyInterval" table="EA_PRD_STUDY_INTERVALS">
+		<id name="prdStudyIntervalId" column="PRD_STUDY_INTERVAL_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">PRD_STUDY_INTERVAL_ID_SEQ</param>
+			</generator>
+		</id>
+		<property name="prdStudyBatchId" column="PRD_STUDY_BATCH_ID" type="java.lang.Long"/>
+		<property name="intervalNumber" column="INTERVAL_NUMBER" type="java.lang.Long"/>
+		<property name="intervalDate" column="INTERVAL_DATE" type="java.util.Date"/>
+		<property name="intervalValue" column="INTERVAL_VALUE" type="java.lang.Long"/>
+		<property name="units" column="UNITS" type="java.lang.Long"/>
+		<property name="labelCount" column="LABEL_COUNT" type="java.lang.Long"/>
+		<property name="pastInterval" column="PAST_INTERVAL" type="yes_no"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+	</class>
+	<class name="com.enviroapps.eapharmics.bom.newstudy.Label" table="EA_PRD_LABELS">
+		<id name="labelId" column="LABEL_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">LABEL_ID_SEQ</param>
+			</generator>
+		</id>
+		<property name="labelName" column="LABEL_NAME" type="java.lang.String"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+		<property name="labelTemplate" column="LABEL_TEMPLATE" type="java.lang.String"/>
+		<property name="locationId" column="LOCATION_ID" type="java.lang.Long"/>
+	</class>
+	<class name="com.enviroapps.eapharmics.bom.newstudy.Image" table="EA_PRD_IMAGES">
+		<id name="imageId" column="IMAGE_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">IMAGE_ID_SEQ</param>
+			</generator>
+		</id>
+		<property name="labelId" column="LABEL_ID" type="java.lang.Long"/>
+		<property name="imageType" column="IMAGE_TYPE" type="int"/>
+		<property name="elementName" column="ELEMENT_NAME" type="java.lang.String"/>
+		<property name="imageData" column="IMAGE_DATA" type="com.enviroapps.eapharmics.bom.newstudy.BinaryBlobType"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+	</class>
+
+	<class name="com.enviroapps.eapharmics.bom.newstudy.LabelData" table="EAVW_LABEL_DATA_FIELDS">
+		<id name="labelDataKey" column="LABEL_DATA_KEY" type="java.lang.String"/>
+		<property name="eaLabelPrintRequestsId" column="EA_LABEL_PRINT_REQUESTS_ID" type="java.lang.Long"/>
+		<property name="prdStudyBatchId" column="PRD_STUDY_BATCH_ID" type="java.lang.Long"/>
+		<property name="prdStudyIntervalId" column="PRD_STUDY_INTERVAL_ID" type="java.lang.Long"/>
+		<property name="productCode" column="PRODUCT_CODE" type="java.lang.String"/>
+		<property name="productName" column="PRODUCT_NAME" type="java.lang.String"/>
+		<property name="productDescription" column="PRODUCT_DESCRIPTION" type="java.lang.String"/>
+		<property name="lotNumber" column="LOT_NUMBER" type="java.lang.String"/>
+		<property name="studyId" column="study_id" type="java.lang.String"/>
+		<property name="studyCondition" column="STUDY_CONDITION" type="java.lang.String"/>
+		<property name="storageLocation" column="STORAGE_LOCATION" type="java.lang.String"/>
+		<property name="formula" column="FORMULA" type="java.lang.String"/>
+		<property name="batchSize" column="BATCH_SIZE" type="java.lang.String"/>
+		<property name="manufacturingSite" column="MANUFACTURING_SITE_CODE" type="java.lang.String"/>
+		<property name="packagingSite" column="PACKAGING_SITE_CODE" type="java.lang.String"/>
+		<property name="manufacturingDate" column="MANUFACTURINGDATE" type="java.util.Date"/>
+		<property name="packagingDate" column="PACKAGE_DATE" type="java.util.Date"/>
+		<property name="initialDate" column="INITIAL_DATE" type="java.util.Date"/>
+		<property name="fill" column="FILL" type="java.lang.String"/>
+		<property name="container" column="CONTAINER_CODE" type="java.lang.String"/>
+		<property name="closure" column="CLOSURE" type="java.lang.String"/>
+		<property name="reason" column="REASON" type="java.lang.String"/>
+		<property name="clientName" column="CLIENTNAME" type="java.lang.String"/>
+		<property name="SSPNumber" column="SSPNUMBER" type="java.lang.String"/>
+		<property name="intervalUnits" column="INTERVAL_UNITS" type="int"/>
+		<property name="intervalValue" column="INTERVAL_VALUE" type="int"/>
+		<property name="intervalDate" column="INTERVAL_DATE" type="java.util.Date"/>
+		<property name="labelId" column="LABEL_ID" type="java.lang.Long"/>
+		<property name="intervalLabel" column="INTERVAL_LABEL" type="java.lang.String"/>
+		<property name="labelCount" column="LABEL_COUNT" type="int"/>
+		<property name="extraLabelCount" column="EXTRA_LABEL_COUNT" type="int"/>
+		<property name="labelPrinted" column="LABEL_PRINTED_YN" type="yes_no"/>
+		<property name="locationId" column="LOCATION_ID" type="java.lang.Long"/>
+		<property name="labelNumber" column="LABEL_NUMBER" type="int"/>
+		<property name="extraLabel" column="EXTRA_LABEL_YN" type="yes_no"/>
+	</class>	
+	<class name="com.enviroapps.eapharmics.bom.newstudy.LabelPrintRequest" table="EA_LABEL_PRINT_REQUESTS">
+		<id name="eaLabelPrintRequestsId" column="EA_LABEL_PRINT_REQUESTS_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">EA_LABEL_PRINT_REQUESTS_SEQ</param>
+			</generator>
+		</id>
+		<property name="prdStudyBatchId" column="PRD_STUDY_BATCH_ID" type="java.lang.Long"/>
+		<property name="labelId" column="LABEL_ID" type="java.lang.Long"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+		<property name="labelPrinted" column="LABEL_PRINTED_YN" type="yes_no"/>
+		<property name="reason" column="REASON" type="java.lang.String"/>
+		<set name="details" lazy="false" inverse="true" mutable="true" cascade="all" optimistic-lock="true" order-by="PRD_STUDY_INTERVAL_ID asc" embed-xml="true">
+			<key column="EA_LABEL_PRINT_REQUESTS_ID" on-delete="cascade"/>
+			<one-to-many class="com.enviroapps.eapharmics.bom.newstudy.LabelPrintRequestDetail" not-found="exception" embed-xml="true" />
+		</set>
+	</class>
+	<class name="com.enviroapps.eapharmics.bom.newstudy.LabelPrintRequestDetail" table="EA_LABEL_PRINT_REQUEST_DETAILS">
+		<id name="eaLabelRequestDetailsId" column="EA_LABEL_REQUEST_DETAILS_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">EA_LABEL_PRINT_REQUESTS_SEQ</param>
+			</generator>
+		</id>
+		<property name="eaLabelPrintRequestsId" column="EA_LABEL_PRINT_REQUESTS_ID" type="java.lang.Long"/>
+		<property name="prdStudyBatchId" column="PRD_STUDY_BATCH_ID" type="java.lang.Long"/>
+		<property name="prdStudyIntervalId" column="PRD_STUDY_INTERVAL_ID" type="java.lang.Long"/>
+		<property name="labelNumber" column="LABEL_NUMBER" type="int"/>
+		<property name="extraLabel" column="EXTRA_LABEL_YN" type="yes_no"/>
+	</class>
+	<class name="com.enviroapps.eapharmics.bom.newstudy.NewStudySchedule" table="EA_PRD_STUDY_SCHEDULES"
+		optimistic-lock="version">
+		<id name="prdStudyScheduleId" column="PRD_STUDY_SCHEDULE_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">EA_PRD_STUDY_SCHEDULES_SEQ</param>
+			</generator>
+		</id>
+		<property name="prdStudyBatchId" column="PRD_STUDY_BATCH_ID" type="java.lang.Long"/>
+		<property name="prdStudyIntervalId" column="PRD_STUDY_INTERVAL_ID" type="java.lang.Long"/>
+		<property name="scheduleDate" column="SCHEDULE_DATE" type="java.util.Date"/>
+		<property name="intervalValue" column="INTERVAL_VALUE" type="java.lang.String"/>
+		<property name="unitsPulled" column="UNITS_PULLED" type="java.lang.String"/>
+		<property name="scheduleStatus" column="SCHEDULE_STATUS" type="java.lang.String"/>
+		<property name="scheduleStatusDate" column="SCHEDULE_STATUS_DATE" type="java.util.Date"/>
+		<property name="pendingStatusDate" column="PENDING_STATUS_DATE" type="java.util.Date"/>
+		<property name="completedStatusDate" column="COMPLETED_STATUS_DATE" type="java.util.Date"/>
+		<property name="terminatedStatusDate" column="TERMINATED_STATUS_DATE" type="java.util.Date"/>
+		<property name="datePulled" column="DATE_PULLED" type="java.util.Date"/>
+		<property name="pulledBy" column="PULLED_BY" type="java.lang.String"/>
+		<property name="testStartDate" column="TEST_START_DATE" type="java.util.Date"/>
+		<property name="testEndDate" column="TEST_END_DATE" type="java.util.Date"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+		<property name="extraPulled" column="EXTRA_PULLED" type="java.lang.String"/>
+		<property name="extraPulledDate" column="EXTRA_PULLED_DATE" type="java.util.Date"/>
+		<property name="extraPulledBy" column="EXTRA_PULLED_BY" type="java.lang.String"/>
+		<property name="approvalLevel1" column="APPROVAL_LEVEL1_YN" type="yes_no"/>
+		<property name="approvalLevel1By" column="APPROVED_LEVEL1_BY" type="java.lang.String"/>
+		<property name="approvalLevel1Date" column="APPROVED_LEVEL1_DATE" type="java.util.Date"/>
+		<property name="approvalLevel2" column="APPROVAL_LEVEL2_YN" type="yes_no"/>
+		<property name="approvalLevel2By" column="APPROVED_LEVEL2_BY" type="java.lang.String"/>
+		<property name="approvalLevel2Date" column="APPROVED_LEVEL2_DATE" type="java.util.Date"/>
+		<property name="intervalTestStatus" column="INTERVAL_TEST_STATUS" type="java.lang.String"/>
+		<property name="intervalTestStatusDate" column="INTERVAL_TEST_STATUS_DATE" type="java.util.Date"/>
+		<property name="intervalTestStatusBy" column="INTERVAL_TEST_STATUS_BY" type="java.lang.String"/>
+	</class>
+	<class name="com.enviroapps.eapharmics.vo.newstudy.NewStudySummaryVO" table="EAVW_NEW_STUDY_SUMMARY">
+		<id name="prdStudyScheduleId" column="PRD_STUDY_SCHEDULE_ID" type="java.lang.Long"/>
+		<property name="prdStudyBatchId" column="PRD_STUDY_BATCH_ID" type="java.lang.Long"/>
+		<property name="prdStudyIntervalId" column="PRD_STUDY_INTERVAL_ID" type="java.lang.Long"/>
+		<property name="productCode" column="PRODUCT_CODE" type="java.lang.String"/>
+		<property name="productName" column="PRODUCT_NAME" type="java.lang.String"/>
+		<property name="productDescription" column="PRODUCT_DESCRIPTION" type="java.lang.String"/>
+		<property name="productType" column="PRODUCT_TYPE" type="java.lang.String"/>
+		<property name="lotNumber" column="LOT_NUMBER" type="java.lang.String"/>
+		<property name="studyId" column="STUDY_ID" type="java.lang.String"/>
+		<property name="studyCondition" column="STUDY_CONDITION" type="java.lang.String"/>
+		<property name="storageLocation" column="STORAGE_LOCATION" type="java.lang.String"/>
+		<property name="formula" column="FORMULA" type="java.lang.String"/>
+		<property name="batchSize" column="BATCH_SIZE" type="java.lang.String"/>
+		<property name="manufacturingSiteCode" column="MANUFACTURING_SITE_CODE" type="java.lang.String"/>
+		<property name="packagingSiteCode" column="PACKAGING_SITE_CODE" type="java.lang.String"/>
+		<property name="manufacturingDate" column="MANUFACTURING_DATE" type="java.util.Date"/>
+		<property name="packageDate" column="PACKAGE_DATE" type="java.util.Date"/>
+		<property name="initialDate" column="INITIAL_DATE" type="java.util.Date"/>
+		<property name="intervalLabel" column="INTERVAL_LABEL" type="java.lang.String"/>
+		<property name="intervalUnits" column="INTERVAL_UNITS" type="java.lang.Long"/>
+		<property name="fill" column="FILL" type="java.lang.String"/>
+		<property name="containerCode" column="CONTAINER_CODE" type="java.lang.String"/>
+		<property name="closure" column="CLOSURE" type="java.lang.String"/>
+		<property name="totalValue" column="TOTAL_VALUE" type="java.lang.Long"/>
+		<property name="extraValue" column="EXTRA_VALUE" type="java.lang.Long"/>
+		<property name="initialValue" column="INITIAL_VALUE" type="java.lang.Long"/>
+		<property name="intervalValue" column="INTERVAL_VALUE" type="java.lang.String"/>
+		<property name="unitsPulled" column="UNITS_PULLED" type="java.lang.String"/>
+		<property name="datePulled" column="DATE_PULLED" type="java.util.Date"/>
+		<property name="pulledBy" column="PULLED_BY" type="java.lang.String"/>
+		<property name="testStartDate" column="TEST_START_DATE" type="java.util.Date"/>
+		<property name="testEndDate" column="TEST_END_DATE" type="java.util.Date"/>
+		<property name="scheduleStatus" column="SCHEDULE_STATUS" type="java.lang.String"/>
+		<property name="scheduleStatusDate" column="SCHEDULE_STATUS_DATE" type="java.util.Date"/>
+		<property name="pendingStatusDate" column="PENDING_STATUS_DATE" type="java.util.Date"/>
+		<property name="completedStatusDate" column="COMPLETED_STATUS_DATE" type="java.util.Date"/>
+		<property name="terminatedStatusDate" column="TERMINATED_STATUS_DATE" type="java.util.Date"/>
+		<property name="intervalTestStatus" column="INTERVAL_TEST_STATUS" type="java.lang.String"/>
+		<property name="intervalTestStatusBy" column="INTERVAL_TEST_STATUS_BY" type="java.lang.String"/>
+		<property name="intervalTestStatusDate" column="INTERVAL_TEST_STATUS_DATE" type="java.util.Date"/>
+		<property name="extraPulled" column="EXTRA_PULLED" type="java.lang.Long"/>
+		<property name="extraPulledDate" column="EXTRA_PULLED_DATE" type="java.util.Date"/>
+		<property name="extraPulledBy" column="EXTRA_PULLED_BY" type="java.lang.String"/>
+		<property name="scheduleDate" column="SCHEDULE_DATE" type="java.util.Date"/>
+		<property name="extrasAvailable" column="EXTRAS_AVAILABLE" type="java.lang.Long"/>
+		<property name="studySummaryString" column="STUDY_SUMMARY_STRING" type="java.lang.String"/>
+		<property name="testStartedBy" column="TEST_STARTED_BY" type="java.lang.String"/>	
+		<property name="testEndedBy" column="TEST_ENDED_BY" type="java.lang.String"/>
+		<property name="pullInitiatedDate" column="PULL_INITIATED_DATE" type="java.util.Date"/>								
+		<property name="pullInitiatedBy" column="PULL_INITIATED_BY" type="java.lang.String"/>		
+		<property name="packageSizeCode" column="PACKAGE_SIZE_CODE" type="java.lang.String"/>
+		<property name="fillUnits" column="FILL_UNITS" type="java.lang.Long"/>		
+		<property name="unitOfMeasurement" column="UNIT_OF_MEASUREMENT" type="java.lang.String"/>		
+		<property name="intervalText" column="INTERVAL_TEXT" type="java.lang.String"/>
+		<property name="studyReasonCode" column="STUDY_REASON_CODE" type="java.lang.String"/>
+		<property name="userDefinedColumn1" column="USER_DEFINED_COLUMN_1" type="java.lang.String"/>
+		<property name="userDefinedColumn2" column="USER_DEFINED_COLUMN_2" type="java.lang.String"/>
+		<property name="userDefinedColumn3" column="USER_DEFINED_COLUMN_3" type="java.lang.String"/>
+		<property name="userDefinedColumn4" column="USER_DEFINED_COLUMN_4" type="java.lang.String"/>
+		<property name="userDefinedColumn5" column="USER_DEFINED_COLUMN_5" type="java.lang.String"/>
+		<property name="userDefinedColumn6" column="USER_DEFINED_COLUMN_6" type="java.lang.String"/>
+		<property name="userDefinedColumn7" column="USER_DEFINED_COLUMN_7" type="java.lang.String"/>
+		<property name="userDefinedColumn8" column="USER_DEFINED_COLUMN_8" type="java.lang.String"/>
+		<property name="userDefinedColumn9" column="USER_DEFINED_COLUMN_9" type="java.lang.String"/>
+		<property name="userDefinedColumn10" column="USER_DEFINED_COLUMN_10" type="java.lang.String"/>
+		<property name="pullRank" column="PULL_RANK" type="java.lang.Long"/>
+		<property name="pullInitiateRank" column="PULL_INITIATE_RANK" type="java.lang.Long"/>
+		<property name="alreadyPulledRank" column="ALREADY_PULLED_RANK" type="java.lang.Long"/>		
+		<property name="codeYear" column="CODE_YEAR" type="java.lang.String"/>
+		<property name="testingLab" column="TESTING_LAB" type="java.lang.String"/>
+		<property name="partNo" column="PART_NO" type="java.lang.String"/>
+		<property name="barcodeString" column="BARCODE_STRING" type="java.lang.String"/>			
+		<property name="fillerCode" column="FILLER_CODE" type="java.lang.String"/>		
+		<property name="locationId" column="LOCATION_ID" type="java.lang.Long"/>
+		<property name="studyStatus" column="STUDY_STATUS" type="java.lang.String"/>
+		<property name="scannedUnits" column="SCANNED_UNITS" type="java.lang.String"/>
+		<property name="studyReasonDescription" column="STUDY_REASON_DESC" type="java.lang.String"/>
+		<property name="pastInterval" column="PAST_INTERVAL" type ="yes_no" />
+		<property name="expiry" column="EXPIRY" type="java.lang.String"/>
+		<property name="numberOfDaysLate" column="NUMBER_OF_DAYS_LATE" type="java.lang.Long"/>
+		<property name="protocolId" column="PROTOCOL_ID" type="java.lang.Long"/>
+		<property name="scheduledPeriod" column="SCHEDULED_PERIOD" type="java.lang.String"/>
+		<property name="blisterCode" column="BLISTER_CODE"  type="java.lang.String"/>
+		<property name="closureManufacturerCode" column="CLOSURE_MANUFACTURER_CODE" type="java.lang.String"/>
+		<property name="containerManufacturerCode" column="CONTAINER_MANUFACTURER_CODE" type="java.lang.String"/>
+		<property name="containerResinCode" column="CONTAINER_RESIN_CODE" type="java.lang.String"/>
+		<property name="desiccantCode" column="DESICCANT_CODE" type="java.lang.String"/>
+		<property name="desiccantManufacturerCode" column="DESICCANT_MANUFACTURER_CODE" type="java.lang.String"/>
+		<property name="fillerManufacturerCode" column="FILLER_MANUFACTURER_CODE" type="java.lang.String"/>
+		<property name="formingFoilCode" column="FORMING_FOIL_CODE" type="java.lang.String"/>
+		<property name="innersealCode" column="INNERSEAL_CODE" type="java.lang.String"/>
+		<property name="liddingFoilCode" column="LIDDING_FOIL_CODE" type="java.lang.String"/>
+		<property name="linerCode" column="LINER_CODE" type="java.lang.String"/>
+		<property name="linerManufacturerCode" column="LINER_MANUFACTURER_CODE" type="java.lang.String"/>
+		<property name="otherCode1" column="OTHER_CODE_1" type="java.lang.String"/>
+		<property name="otherCode2" column="OTHER_CODE_2" type="java.lang.String"/>
+		<property name="otherManufacturerCode1" column="OTHER_MANUFACTURER_CODE_1" type="java.lang.String"/>
+		<property name="otherManufacturerCode2" column="OTHER_MANUFACTURER_CODE_2" type="java.lang.String"/>
+		<property name="productId" column="PRODUCT_ID" type="java.lang.Long"/>
+		<property name="propreitaryStudyId" column="PROPREITARY_STUDY_ID" type="java.lang.String"/>
+		<property name="studyText" column="STUDY_TEXT" type="java.lang.String"/>	
+		<property name="onStabilityDate" column="ON_STABILITY_DATE" type="java.util.Date"/>
+		<property name="scheduleDateForSort" column="SCHEDULE_DATE_FOR_SORT" type="java.util.Date"/>
+		<property name="initialDateForSort" column="INITIAL_DATE_FOR_SORT" type="java.util.Date"/>		
+	</class>
+	<class name="com.enviroapps.eapharmics.bom.newstudy.NewStudyTestResult" table="EA_PRD_STUDY_TEST_RESULTS">
+		<id name="prdStudyTestResultsId" column="PRD_STUDY_TEST_RESULTS_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">EA_PRD_TEST_RESULTS_SEQ</param>
+			</generator>
+		</id>
+		<property name="prdStudyScheduleId" column="PRD_STUDY_SCHEDULE_ID" type="java.lang.Long"/>
+		<property name="productTestId" column="PRODUCT_TEST_ID" type="java.lang.Long"/>
+		<property name="analyst" column="ANALYST" type="java.lang.String"/>
+		<property name="reference" column="REFERENCE" type="java.lang.String"/>
+		<property name="resultDate" column="RESULT_DATE" type="java.util.Date"/>
+		<property name="resultStatus" column="RESULT_STATUS" type="java.lang.String"/>
+		<property name="result1" column="RESULT_1" type="java.lang.String"/>
+		<property name="result2" column="RESULT_2" type="java.lang.String"/>
+		<property name="result3" column="RESULT_3" type="java.lang.String"/>
+		<property name="result4" column="RESULT_4" type="java.lang.String"/>
+		<property name="result5" column="RESULT_5" type="java.lang.String"/>
+		<property name="result6" column="RESULT_6" type="java.lang.String"/>
+		<property name="result7" column="RESULT_7" type="java.lang.String"/>
+		<property name="result8" column="RESULT_8" type="java.lang.String"/>
+		<property name="result9" column="RESULT_9" type="java.lang.String"/>
+		<property name="result10" column="RESULT_10" type="java.lang.String"/>
+		<property name="result11" column="RESULT_11" type="java.lang.String"/>
+		<property name="result12" column="RESULT_12" type="java.lang.String"/>
+		<property name="result13" column="RESULT_13" type="java.lang.String"/>
+		<property name="result14" column="RESULT_14" type="java.lang.String"/>
+		<property name="result15" column="RESULT_15" type="java.lang.String"/>
+		<property name="result16" column="RESULT_16" type="java.lang.String"/>
+		<property name="result17" column="RESULT_17" type="java.lang.String"/>
+		<property name="result18" column="RESULT_18" type="java.lang.String"/>
+		<property name="result19" column="RESULT_19" type="java.lang.String"/>
+		<property name="result20" column="RESULT_20" type="java.lang.String"/>
+		<property name="result21" column="RESULT_21" type="java.lang.String"/>
+		<property name="result22" column="RESULT_22" type="java.lang.String"/>
+		<property name="result23" column="RESULT_23" type="java.lang.String"/>
+		<property name="result24" column="RESULT_24" type="java.lang.String"/>
+		<property name="result25" column="RESULT_25" type="java.lang.String"/>
+		<property name="result26" column="RESULT_26" type="java.lang.String"/>
+		<property name="result27" column="RESULT_27" type="java.lang.String"/>
+		<property name="result28" column="RESULT_28" type="java.lang.String"/>
+		<property name="result29" column="RESULT_29" type="java.lang.String"/>
+		<property name="result30" column="RESULT_30" type="java.lang.String"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+		<property name="prdStudyBatchId" column="PRD_STUDY_BATCH_ID" type="java.lang.Long"/>
+		<property name="studyId" column="STUDY_ID" type="java.lang.String"/>
+		<property name="testIntervalUsed" column="TEST_INTERVAL_USED" type="yes_no"/>
+		<property name="fillUnitsUsed" column="FILL_UNITS_USED" type="java.lang.Double"/>
+		<property name="usedDate" column="USED_DATE" type="java.util.Date"/>
+		<property name="usedBy" column="USED_BY" type="java.lang.String"/>
+		<property name="resultAverage" column="RESULT_AVERAGE" type="java.lang.String"/>
+	</class>
+	<class name="com.enviroapps.eapharmics.vo.newstudy.GraphGeneratorVO" table="EAVW_GRAPH_GENERATOR">
+	    <id name="prdStudyScheduleId" column="PRD_STUDY_SCHEDULE_ID" type="java.lang.Long"/>
+	    <property name="intervalValue" column="INTERVAL_VALUE" type="java.lang.Long"/>
+	    <property name="lowerLimit" column="LOWER_LIMIT" type="java.lang.String"/>
+		<property name="upperLimit" column="UPPER_LIMIT" type="java.lang.String"/>
+		<property name="testName" column="TEST_NAME" type="java.lang.String"/>
+	    <property name="result1" column="RESULT_1" type="java.lang.String"/>
+		<property name="result2" column="RESULT_2" type="java.lang.String"/>
+		<property name="result3" column="RESULT_3" type="java.lang.String"/>
+		<property name="result4" column="RESULT_4" type="java.lang.String"/>
+		<property name="result5" column="RESULT_5" type="java.lang.String"/>
+		<property name="result6" column="RESULT_6" type="java.lang.String"/>
+		<property name="result7" column="RESULT_7" type="java.lang.String"/>
+		<property name="result8" column="RESULT_8" type="java.lang.String"/>
+		<property name="result9" column="RESULT_9" type="java.lang.String"/>
+		<property name="result10" column="RESULT_10" type="java.lang.String"/>
+		<property name="result11" column="RESULT_11" type="java.lang.String"/>
+		<property name="result12" column="RESULT_12" type="java.lang.String"/>
+		<property name="result13" column="RESULT_13" type="java.lang.String"/>
+		<property name="result14" column="RESULT_14" type="java.lang.String"/>
+		<property name="result15" column="RESULT_15" type="java.lang.String"/>
+		<property name="result16" column="RESULT_16" type="java.lang.String"/>
+		<property name="result17" column="RESULT_17" type="java.lang.String"/>
+		<property name="result18" column="RESULT_18" type="java.lang.String"/>
+		<property name="result19" column="RESULT_19" type="java.lang.String"/>
+		<property name="result20" column="RESULT_20" type="java.lang.String"/>
+		<property name="result21" column="RESULT_21" type="java.lang.String"/>
+		<property name="result22" column="RESULT_22" type="java.lang.String"/>
+		<property name="result23" column="RESULT_23" type="java.lang.String"/>
+		<property name="result24" column="RESULT_24" type="java.lang.String"/>
+		<property name="result25" column="RESULT_25" type="java.lang.String"/>
+		<property name="result26" column="RESULT_26" type="java.lang.String"/>
+		<property name="result27" column="RESULT_27" type="java.lang.String"/>
+		<property name="result28" column="RESULT_28" type="java.lang.String"/>
+		<property name="result29" column="RESULT_29" type="java.lang.String"/>
+		<property name="result30" column="RESULT_30" type="java.lang.String"/>
+		<property name="locationId" column="LOCATION_ID" type="java.lang.Long"/>		
+	</class>
+	<class name="com.enviroapps.eapharmics.bom.newstudy.StudyInventoryDestroyed" table="EA_STUDY_INV_DESTROYED">
+		<id name="prdStudyInvDestroyedId" column="PRD_STUDY_INV_DESTROYED_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">EA_STUDY_INV_DESTROYED_SEQ</param>
+			</generator>
+		</id>
+		<property name="prdStudyScheduleId" column="PRD_STUDY_SCHEDULE_ID" type="java.lang.Long"/>
+		<property name="unitsDestroyed" column="UNITS_DESTROYED" type="java.lang.Long"/>
+		<property name="destroyedBy" column="DESTROYED_BY" type="java.lang.String"/>
+		<property name="destroyedDate" column="DESTROYED_DATE" type="java.util.Date"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+	</class>
+	<class name="com.enviroapps.eapharmics.vo.newstudy.ProductStudyIntervalsVO" table="EAVW_PRODUCT_STUDY_INTERVALS">
+		<id name="prdStudyBatchId" column="PRD_STUDY_BATCH_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence"></param>
+			</generator>
+		</id>
+		<property name="productId" column="PRODUCT_ID" type="java.lang.Long"/>
+		<property name="productCode" column="PRODUCT_CODE" type="java.lang.String"/>
+		<property name="productName" column="PRODUCT_NAME" type="java.lang.String"/>
+		<property name="lotNumber" column="LOT_NUMBER" type="java.lang.String"/>
+		<property name="fill" column="FILL" type="java.lang.String"/>
+		<property name="containerCode" column="CONTAINER_CODE" type="java.lang.String"/>
+		<property name="closure" column="CLOSURE" type="java.lang.String"/>
+		<property name="studyId" column="STUDY_ID" type="java.lang.String"/>
+		<property name="testingLab" column="TESTING_LAB" type="java.lang.String"/>
+		<property name="partNo" column="PART_NO" type="java.lang.String"/>
+		<property name="formula" column="FORMULA" type="java.lang.String"/>
+		<property name="studyCondition" column="STUDY_CONDITION" type="java.lang.String"/>
+		<property name="storageLocation" column="STORAGE_LOCATION" type="java.lang.String"/>
+		<property name="studyReasonCode" column="STUDY_REASON_CODE" type="java.lang.String"/>
+		<property name="pullDate0" column="PULL_DATE0" type="java.util.Date"/>
+		<property name="pullDate1" column="PULL_DATE1" type="java.util.Date"/>
+		<property name="pullDate2" column="PULL_DATE2" type="java.util.Date"/>
+		<property name="pullDate3" column="PULL_DATE3" type="java.util.Date"/>
+		<property name="pullDate4" column="PULL_DATE4" type="java.util.Date"/>
+		<property name="pullDate5" column="PULL_DATE5" type="java.util.Date"/>
+		<property name="pullDate6" column="PULL_DATE6" type="java.util.Date"/>
+		<property name="pullDate7" column="PULL_DATE7" type="java.util.Date"/>
+		<property name="pullDate8" column="PULL_DATE8" type="java.util.Date"/>
+		<property name="pullDate9" column="PULL_DATE9" type="java.util.Date"/>
+		<property name="pullDate10" column="PULL_DATE10" type="java.util.Date"/>
+		<property name="pullDate11" column="PULL_DATE11" type="java.util.Date"/>
+		<property name="pullDate12" column="PULL_DATE12" type="java.util.Date"/>
+		<property name="pullDate13" column="PULL_DATE13" type="java.util.Date"/>
+		<property name="pullDate14" column="PULL_DATE14" type="java.util.Date"/>
+		<property name="pullDate15" column="PULL_DATE15" type="java.util.Date"/>
+		<property name="pullDate16" column="PULL_DATE16" type="java.util.Date"/>
+		<property name="pullDate17" column="PULL_DATE17" type="java.util.Date"/>
+		<property name="pullDate18" column="PULL_DATE18" type="java.util.Date"/>
+		<property name="pullDate19" column="PULL_DATE19" type="java.util.Date"/>		
+		<property name="locationId" column="LOCATION_ID" type="java.lang.Long"/>	
+		<property name="codeYear" column="CODE_YEAR" type="java.lang.String"/>
+		<property name="initialDate" column="INITIAL_DATE" type="java.util.Date"/>
+		<property name="userDefinedColumn1" column="USER_DEFINED_COLUMN_1" type="java.lang.String"/>
+		<property name="userDefinedColumn2" column="USER_DEFINED_COLUMN_2" type="java.lang.String"/>
+		<property name="userDefinedColumn3" column="USER_DEFINED_COLUMN_3" type="java.lang.String"/>
+		<property name="userDefinedColumn4" column="USER_DEFINED_COLUMN_4" type="java.lang.String"/>
+		<property name="userDefinedColumn5" column="USER_DEFINED_COLUMN_5" type="java.lang.String"/>
+		<property name="userDefinedColumn6" column="USER_DEFINED_COLUMN_6" type="java.lang.String"/>
+		<property name="userDefinedColumn7" column="USER_DEFINED_COLUMN_7" type="java.lang.String"/>
+		<property name="userDefinedColumn8" column="USER_DEFINED_COLUMN_8" type="java.lang.String"/>
+		<property name="userDefinedColumn9" column="USER_DEFINED_COLUMN_9" type="java.lang.String"/>
+		<property name="userDefinedColumn10" column="USER_DEFINED_COLUMN_10" type="java.lang.String"/>
+		<property name="onStabilityDate" column="ON_STABILITY_DATE" type="java.util.Date"/>
+		<property name="stabilityYear" column="STABILITY_YEAR" type="java.lang.String"/>
+		<property name="studyStatus" column="STUDY_STATUS" type="java.lang.String"/>
+	</class>
+	<class name="com.enviroapps.eapharmics.vo.newstudy.RptUserPreferenceVO" table="EAVW_REPORT_USER_PREFERENCE">
+		<id name="rptUserPreferenceId" column="RPT_USER_PREFERENCE_ID" type="java.lang.Long">
+		</id>
+		<property name="reportColumnId" column="REPORT_COLUMN_ID" type="java.lang.Long"/>
+		<property name="reportGroupName" column="REPORT_GROUP_NAME" type="java.lang.String"/>
+		<property name="reportName" column="REPORT_NAME" type="java.lang.String"/>
+		<property name="fieldName" column="FIELD_NAME" type="java.lang.String"/>
+		<property name="fieldHeader" column="FIELD_HEADER" type="java.lang.String"/>
+		<property name="displayOrder" column="DISPLAY_ORDER" type="java.lang.Long"/>
+		<property name="active" column="ACTIVE" type="yes_no"/>
+		<property name="appUserId" column="APP_USER_ID" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="orderBy" column="ORDER_BY" type="java.lang.String"/>
+		<property name="orderByPosition" column="ORDER_BY_POSITION" type="java.lang.Long"/>
+		<property name="displayInSelectionScreen" column="DISPLAY_IN_SELECTION_SCREEN" type="yes_no"/>
+		<property name="sortFieldName" column="SORT_FIELD_NAME" type="java.lang.String"/>
+		<property name="activeField" column="ACTIVE_FIELD" type="yes_no"/>	
+		<property name="alternateFieldName" column="ALTERNATE_FIELD_NAME" type="java.lang.String"/>
+		<property name="fieldDataType" column="FIELD_DATA_TYPE" type="java.lang.String"/>
+		<property name="fieldValue" column="FIELD_VALUE" type="java.lang.String"/>	
+		<property name="locationId" column="LOCATION_ID" type="java.lang.Long"/>
+	</class>
+	<sql-query name="createScheduleForStudy">
+		<![CDATA[
+		BEGIN pkg_ea_schedule.prc_create_schedule(?, ?, ?,?); END;
+		]]>
+	</sql-query>	
+</hibernate-mapping>

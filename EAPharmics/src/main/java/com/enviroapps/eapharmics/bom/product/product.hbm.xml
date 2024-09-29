@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.enviroapps.eapharmics.bom.product.Product" table="	EA_PRD_PRODUCTS"
+		optimistic-lock="version">
+		<id name="productId" column="PRODUCT_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">EA_PRODUCT_ID_SEQ</param>
+			</generator>
+		</id>
+		<version name="version" column="VERSION"/>
+		<property name="productCode" column="PRODUCT_CODE" type="java.lang.String"/>
+		<property name="productName" column="PRODUCT_NAME" type="java.lang.String"/>
+		<property name="productDescription" column="PRODUCT_DESCRIPTION" type="java.lang.String"/>
+		<property name="expirationPeriod" column="EXPIRATION_PERIOD" type="java.lang.String"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="startDate" column="START_DATE" type="java.util.Date"/>
+		<property name="endDate" column="END_DATE" type="java.util.Date"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+		<property name="approvalLevel1" column="APPROVAL_LEVEL1_YN" type="yes_no"/>
+		<property name="approvalLevel1By" column="APPROVED_LEVEL1_BY" type="java.lang.Long"/>
+		<property name="approvalLevel1Date" column="APPROVED_LEVEL1_DATE" type="java.util.Date"/>
+		<property name="approvalLevel2" column="APPROVAL_LEVEL2_YN" type="yes_no"/>
+		<property name="approvalLevel2By" column="APPROVED_LEVEL2_BY" type="java.lang.Long"/>
+		<property name="approvalLevel2Date" column="APPROVED_LEVEL2_DATE" type="java.util.Date"/>
+		<property name="active" column="ACTIVE" type="yes_no"/>
+		<property name="productType" column="PRODUCT_TYPE" type="java.lang.String"/>
+		<property name="annualReportAnniversaryDate" column="ANNUAL_RPT_ANNIVERSARY_DATE" type="java.util.Date"/>
+		<property name="readyForApproval" column="READY_FOR_APPROVAL_YN" type="yes_no"/>
+		<property name="locationId" column="LOCATION_ID" type="java.lang.Long"/>        		
+		<property name="approvedOnce" column="APPROVED_ONCE_YN" type="yes_no" not-null="true"/>
+		<set name="batches" lazy="false" inverse="true" mutable="true" cascade="all" optimistic-lock="true" order-by="BATCH_LINE_NUMBER" embed-xml="true">
+			<key column="PRODUCT_ID" on-delete="cascade"/>
+			<one-to-many class="com.enviroapps.eapharmics.bom.product.ProductBatch" not-found="exception" embed-xml="true"/>
+		</set>
+		<set name="formulations" lazy="false" inverse="true" mutable="true" cascade="all" optimistic-lock="true" order-by="LINE_NUMBER" embed-xml="true">
+			<key column="PRODUCT_ID" on-delete="cascade"/>
+			<one-to-many class="com.enviroapps.eapharmics.bom.product.ProductFormulation" not-found="exception" embed-xml="true"/>
+		</set>
+		<set name="productTests" lazy="false" inverse="true" mutable="true" cascade="all" order-by="SORT_ORDER_CURRENT" optimistic-lock="true" embed-xml="true">
+			<key column="PRODUCT_ID" on-delete="cascade"/>
+			<one-to-many class="com.enviroapps.eapharmics.bom.product.ProductTest" not-found="exception" embed-xml="true"/>
+		</set>
+		<set name="protocols" lazy="false" inverse="true" mutable="true"  cascade="all" optimistic-lock="true" order-by="PROTOCOL_NAME" embed-xml="true">
+			<key column="PRODUCT_ID" on-delete="cascade"/>			
+			<one-to-many class="com.enviroapps.eapharmics.bom.product.Protocol" not-found="exception" embed-xml="true"/>
+		</set>
+	</class>
+	<class name="com.enviroapps.eapharmics.bom.product.ProductBatch" table="EA_PRD_PRODUCT_BATCHES">
+		<id name="productBatchId" column="PRODUCT_BATCH_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">EA_PRODUCT_BATCH_ID_SEQ</param>
+			</generator>
+		</id>
+<!-- 		<property name="productId" column="PRODUCT_ID" type="java.lang.Long"/>  -->
+		<property name="batchLineNumber" column="BATCH_LINE_NUMBER" type="java.lang.Long"/>
+		<property name="batchSize" column="BATCH_SIZE" type="java.lang.String"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+		<many-to-one name="product" column="PRODUCT_ID" not-null="true" />
+	</class>
+	<class name="com.enviroapps.eapharmics.bom.product.ProductFormulation" table="EA_PRD_PRODUCT_FORMULATION">
+		<id name="productFormulationId" column="PRODUCT_FORMULATION_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">EA_PRODUCT_FORMULATION_ID_SEQ</param>
+			</generator>
+		</id>
+<!-- 		<property name="productId" column="PRODUCT_ID" type="java.lang.Long"/>  -->
+		<property name="lineNumber" column="LINE_NUMBER" type="java.lang.Long"/>
+		<property name="productFormulation" column="PRODUCT_FORMULATION" type="java.lang.String"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+		<many-to-one name="product" column="PRODUCT_ID" not-null="true" />
+	</class>
+	<class name="com.enviroapps.eapharmics.bom.product.Test" table="EA_PRD_TESTS">
+		<id name="testId" column="TEST_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">EA_PRODUCT_TEST_ID_SEQ</param>
+			</generator>
+		</id>
+		<property name="testName" column="TEST_NAME" type="java.lang.String"/>
+		<property name="lowerLimit" column="LOWER_LIMIT" type="java.lang.String"/>
+		<property name="upperLimit" column="UPPER_LIMIT" type="java.lang.String"/>
+		<property name="numOfEntries" column="NUM_OF_ENTRIES" type="java.lang.Long"/>
+		<property name="method" column="METHOD" type="java.lang.String"/>
+		<property name="decimalPoints" column="DECIMAL_POINTS" type="java.lang.String"/>
+		<property name="resultsFormat" column="RESULTS_FORMAT" type="java.lang.String"/>
+		<property name="measurement" column="MEASUREMENT" type="java.lang.String"/>
+		<property name="graph" column="GRAPH" type="yes_no"/>
+		<property name="labNumber" column="LAB_NUMBER" type="java.lang.String"/>
+		<property name="textLine" column="TEXT_LINE" type="java.lang.String"/>
+		<property name="alertLowerLimit" column="ALERT_LOWER_LIMIT" type="java.lang.String"/>
+		<property name="alertUpperLimit" column="ALERT_UPPER_LIMIT" type="java.lang.String"/>
+		<property name="alertLowerVariance" column="ALERT_LOWER_VARIANCE" type="java.lang.String"/>
+		<property name="alertUpperVariance" column="ALERT_UPPER_VARIANCE" type="java.lang.String"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+		<property name="textLimit" column="TEXT_LIMIT" type="java.lang.String"/>
+        <property name="locationId" column="LOCATION_ID" type="java.lang.Long"/>		
+	</class>
+	<class name="com.enviroapps.eapharmics.bom.product.ProductTest" table="EA_PRD_PRODUCT_TESTS">
+		<id name="productTestId" column="PRODUCT_TEST_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">EA_TEST_ID_SEQ</param>
+			</generator>
+		</id>
+<!-- 	<property name="productId" column="PRODUCT_ID" type="java.lang.Long"/> -->
+		<property name="sortOrderPrevious" column="SORT_ORDER_PREVIOUS" type="java.lang.Long"/>
+		<property name="sortOrderCurrent" column="SORT_ORDER_CURRENT" type="java.lang.Long"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+		<property name="testName" column="TEST_NAME" type="java.lang.String"/>
+		<property name="lowerLimit" column="LOWER_LIMIT" type="java.lang.String"/>
+		<property name="upperLimit" column="UPPER_LIMIT" type="java.lang.String"/>
+		<property name="numOfEntries" column="NUM_OF_ENTRIES" type="java.lang.Long"/>
+		<property name="method" column="METHOD" type="java.lang.String"/>
+		<property name="decimalPoints" column="DECIMAL_POINTS" type="java.lang.Long"/>
+		<property name="resultsFormat" column="RESULTS_FORMAT" type="java.lang.String"/>
+		<property name="measurement" column="MEASUREMENT" type="java.lang.String"/>
+		<property name="graph" column="GRAPH" type="yes_no"/>
+		<property name="labNumber" column="LAB_NUMBER" type="java.lang.String"/>
+		<property name="textLine" column="TEXT_LINE" type="java.lang.String"/>
+		<property name="alertLowerLimit" column="ALERT_LOWER_LIMIT" type="java.lang.String"/>
+		<property name="alertUpperLimit" column="ALERT_UPPER_LIMIT" type="java.lang.String"/>
+		<property name="alertLowerVariance" column="ALERT_LOWER_VARIANCE" type="java.lang.String"/>
+		<property name="alertUpperVariance" column="ALERT_UPPER_VARIANCE" type="java.lang.String"/>
+		<many-to-one name="product" column="PRODUCT_ID" not-null="true" />
+		<property name="textLimit" column="TEXT_LIMIT" type="java.lang.String"/>
+	</class>
+	<class name="com.enviroapps.eapharmics.bom.product.Protocol" table="EA_PRD_PROTOCOLS">
+		<id name="protocolId" column="PROTOCOL_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">EA_PROTOCOL_ID_SEQ</param>
+			</generator>
+		</id>
+<!-- 	<property name="productId" column="PRODUCT_ID" type="java.lang.Long"/> -->
+		<property name="protocolNumber" column="PROTOCOL_NUMBER" type="java.lang.Long"/>
+		<property name="protocolName" column="PROTOCOL_NAME" type="java.lang.String"/>
+		<property name="intervalUnits" column="INTERVAL_UNITS" type="java.lang.String"/>
+		<property name="testIntervalValue1" column="TEST_INTERVAL_VALUE1" type="java.lang.Long"/>
+		<property name="testIntervalValue2" column="TEST_INTERVAL_VALUE2" type="java.lang.Long"/>
+		<property name="testIntervalValue3" column="TEST_INTERVAL_VALUE3" type="java.lang.Long"/>
+		<property name="testIntervalValue4" column="TEST_INTERVAL_VALUE4" type="java.lang.Long"/>
+		<property name="testIntervalValue5" column="TEST_INTERVAL_VALUE5" type="java.lang.Long"/>
+		<property name="testIntervalValue6" column="TEST_INTERVAL_VALUE6" type="java.lang.Long"/>
+		<property name="testIntervalValue7" column="TEST_INTERVAL_VALUE7" type="java.lang.Long"/>
+		<property name="testIntervalValue8" column="TEST_INTERVAL_VALUE8" type="java.lang.Long"/>
+		<property name="testIntervalValue9" column="TEST_INTERVAL_VALUE9" type="java.lang.Long"/>
+		<property name="testIntervalValue10" column="TEST_INTERVAL_VALUE10" type="java.lang.Long"/>
+		<property name="testIntervalValue11" column="TEST_INTERVAL_VALUE11" type="java.lang.Long"/>
+		<property name="testIntervalValue12" column="TEST_INTERVAL_VALUE12" type="java.lang.Long"/>
+		<property name="testIntervalValue13" column="TEST_INTERVAL_VALUE13" type="java.lang.Long"/>
+		<property name="testIntervalValue14" column="TEST_INTERVAL_VALUE14" type="java.lang.Long"/>
+		<property name="testIntervalValue15" column="TEST_INTERVAL_VALUE15" type="java.lang.Long"/>
+		<property name="testIntervalValue16" column="TEST_INTERVAL_VALUE16" type="java.lang.Long"/>
+		<property name="testIntervalValue17" column="TEST_INTERVAL_VALUE17" type="java.lang.Long"/>
+		<property name="testIntervalValue18" column="TEST_INTERVAL_VALUE18" type="java.lang.Long"/>
+		<property name="testIntervalValue19" column="TEST_INTERVAL_VALUE19" type="java.lang.Long"/>
+		<property name="testIntervalValue20" column="TEST_INTERVAL_VALUE20" type="java.lang.Long"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+		<many-to-one name="product" column="PRODUCT_ID" not-null="true" />
+	</class>
+	<class name="com.enviroapps.eapharmics.bom.product.ProtocolDetail" table="EA_PRD_PROTOCOL_DETAILS">
+		<id name="protocolDetailId" column="PROTOCOL_DETAIL_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">EA_PROTOCOL_DETAIL_ID_SEQ</param>
+			</generator>
+		</id>
+		<property name="protocolId" column="PROTOCOL_ID" type="java.lang.Long"/>
+		<property name="testId" column="TEST_ID" type="java.lang.Long"/>
+		<property name="testIntervalUsed1" column="TEST_INTERVAL_USED1" type="yes_no"/>
+		<property name="testIntervalUsed2" column="TEST_INTERVAL_USED2" type="yes_no"/>
+		<property name="testIntervalUsed3" column="TEST_INTERVAL_USED3" type="yes_no"/>
+		<property name="testIntervalUsed4" column="TEST_INTERVAL_USED4" type="yes_no"/>
+		<property name="testIntervalUsed5" column="TEST_INTERVAL_USED5" type="yes_no"/>
+		<property name="testIntervalUsed6" column="TEST_INTERVAL_USED6" type="yes_no"/>
+		<property name="testIntervalUsed7" column="TEST_INTERVAL_USED7" type="yes_no"/>
+		<property name="testIntervalUsed8" column="TEST_INTERVAL_USED8" type="yes_no"/>
+		<property name="testIntervalUsed9" column="TEST_INTERVAL_USED9" type="yes_no"/>
+		<property name="testIntervalUsed10" column="TEST_INTERVAL_USED10" type="yes_no"/>
+		<property name="testIntervalUsed11" column="TEST_INTERVAL_USED11" type="yes_no"/>
+		<property name="testIntervalUsed12" column="TEST_INTERVAL_USED12" type="yes_no"/>
+		<property name="testIntervalUsed13" column="TEST_INTERVAL_USED13" type="yes_no"/>
+		<property name="testIntervalUsed14" column="TEST_INTERVAL_USED14" type="yes_no"/>
+		<property name="testIntervalUsed15" column="TEST_INTERVAL_USED15" type="yes_no"/>
+		<property name="testIntervalUsed16" column="TEST_INTERVAL_USED16" type="yes_no"/>
+		<property name="testIntervalUsed17" column="TEST_INTERVAL_USED17" type="yes_no"/>
+		<property name="testIntervalUsed18" column="TEST_INTERVAL_USED18" type="yes_no"/>
+		<property name="testIntervalUsed19" column="TEST_INTERVAL_USED19" type="yes_no"/>
+		<property name="testIntervalUsed20" column="TEST_INTERVAL_USED20" type="yes_no"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+	</class>
+	<class name="com.enviroapps.eapharmics.bom.product.Inventory" table="EA_PRD_INVENTORY">
+		<id name="inventoryId" column="INVENTORY_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">EA_INVENTORY_ID_SEQ</param>
+			</generator>
+		</id>
+		<property name="productId" column="PRODUCT_ID" type="java.lang.Long"/>
+		<property name="protocolId" column="PROTOCOL_ID" type="java.lang.Long"/>
+		<property name="fillUnits" column="FILL_UNITS" type="java.lang.Long"/>
+		<property name="unitOfMeasure" column="UNIT_OF_MEASUREMENT" type="java.lang.String"/>
+		<property name="total" column="TOTAL" type="java.lang.Long"/>
+		<property name="extra" column="EXTRA" type="java.lang.Long"/>
+		<property name="testIntervalInventory1" column="TEST_INTERVAL_INVENTORY1" type="java.lang.Long"/>
+		<property name="testIntervalInventory2" column="TEST_INTERVAL_INVENTORY2" type="java.lang.Long"/>
+		<property name="testIntervalInventory3" column="TEST_INTERVAL_INVENTORY3" type="java.lang.Long"/>
+		<property name="testIntervalInventory4" column="TEST_INTERVAL_INVENTORY4" type="java.lang.Long"/>
+		<property name="testIntervalInventory5" column="TEST_INTERVAL_INVENTORY5" type="java.lang.Long"/>
+		<property name="testIntervalInventory6" column="TEST_INTERVAL_INVENTORY6" type="java.lang.Long"/>
+		<property name="testIntervalInventory7" column="TEST_INTERVAL_INVENTORY7" type="java.lang.Long"/>
+		<property name="testIntervalInventory8" column="TEST_INTERVAL_INVENTORY8" type="java.lang.Long"/>
+		<property name="testIntervalInventory9" column="TEST_INTERVAL_INVENTORY9" type="java.lang.Long"/>
+		<property name="testIntervalInventory10" column="TEST_INTERVAL_INVENTORY10" type="java.lang.Long"/>
+		<property name="testIntervalInventory11" column="TEST_INTERVAL_INVENTORY11" type="java.lang.Long"/>
+		<property name="testIntervalInventory12" column="TEST_INTERVAL_INVENTORY12" type="java.lang.Long"/>
+		<property name="testIntervalInventory13" column="TEST_INTERVAL_INVENTORY13" type="java.lang.Long"/>
+		<property name="testIntervalInventory14" column="TEST_INTERVAL_INVENTORY14" type="java.lang.Long"/>
+		<property name="testIntervalInventory15" column="TEST_INTERVAL_INVENTORY15" type="java.lang.Long"/>
+		<property name="testIntervalInventory16" column="TEST_INTERVAL_INVENTORY16" type="java.lang.Long"/>
+		<property name="testIntervalInventory17" column="TEST_INTERVAL_INVENTORY17" type="java.lang.Long"/>
+		<property name="testIntervalInventory18" column="TEST_INTERVAL_INVENTORY18" type="java.lang.Long"/>
+		<property name="testIntervalInventory19" column="TEST_INTERVAL_INVENTORY19" type="java.lang.Long"/>
+		<property name="testIntervalInventory20" column="TEST_INTERVAL_INVENTORY20" type="java.lang.Long"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+	</class>
+	<class name="com.enviroapps.eapharmics.bom.product.ProductSpec" table="	EA_PRD_PRODUCT_SPECS">
+		<id name="productSpecId" column="PRODUCT_SPEC_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">EA_PRODUCT_SPEC_ID_SEQ</param>
+			</generator>
+		</id>
+		<property name="productId" column="PRODUCT_ID" type="java.lang.Long"/>
+		<property name="lineNumber" column="LINE_NUMBER" type="java.lang.Long"/>
+		<property name="textLine" column="TEXT_LINE" type="java.lang.String"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+	</class>
+	<sql-query name="updateProductSchedule">
+		<![CDATA[
+		BEGIN pkg_ea_schedule.prc_update_product_schedule(?, ?, ?); END;
+		]]>
+	</sql-query>
+</hibernate-mapping>

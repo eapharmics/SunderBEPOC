@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.enviroapps.eapharmics.ui.pharma.PharmaVO" table="EA_PHARMA_NEW_SAMPLE">
+        <id name="batch_no" column="BATCH_NO" type="java.lang.Long">
+			<generator class="sequence">
+			    <param name="sequence">PHARMA</param>			
+			</generator>
+		</id>
+         <property name="product" column="PRODUCT" type="java.lang.String"/>        
+        <property name="strength" column="STRENGTH" type="java.lang.String"/>        
+        <property name="batch_size" column="BATCH_SIZE" type="java.lang.String"/>        
+        <property name="mfg" column="MFG" type="java.lang.String"/>        
+        <property name="exp" column="EXP" type="java.lang.String"/>
+        <property name="packsize" column="PACKSIZE" type="java.lang.String"/>
+        <property name="pkg" column="PKG" type="java.lang.String"/>
+        <property name="r_Dbatch" column="R_DBATCH" type="yes_no"/>
+        <property name="anda_batch" column="ANDA_BATCH" type="yes_no"/>
+        <property name="annual_stability_batch" column="ANNUAL_STABILITY_BATCH" type="yes_no"/>
+        <property name="validity_batch" column="VALIDITY_BATCH" type="yes_no"/>
+        <property name="others" column="OTHERS" type="java.lang.String"/>
+        <property name="otherschk" column="OTHERSCHK" type="yes_no"/>
+        <property name="initial_analysis_yes" column="INITIAL_ANALYSIS_YES" type="yes_no"/>
+        <property name="initial_analysis_no" column="INITIAL_ANALYSIS_NO" type="yes_no"/>
+        <property name="bulk" column="BULK" type="yes_no"/>
+        <property name="blend" column="BLEND" type="yes_no"/>
+        <property name="controlled" column="CONTROLLED" type="yes_no"/>
+        <property name="accrelated" column="ACCRELATED" type="yes_no"/>
+        <property name="refri" column="REFRI" type="yes_no"/>
+        <property name="intermediate" column="INTERMEDIATE" type="yes_no"/>
+        <property name="mfgpkgsite" column="MFGPKGSITE" type="java.lang.String"/>
+        <property name="apicontrolno" column="APICONTROLNO" type="java.lang.String"/>
+        <property name="apimfr" column="APIMFR" type="java.lang.String"/>
+        <property name="containerdesc" column="CONTAINERDESC" type="java.lang.String"/>
+        <property name="itemcode_cont" column="ITEMCODE_CONT" type="java.lang.String"/>
+        <property name="closuredesc" column="CLOSUREDESC" type="java.lang.String"/>
+        <property name="itemcode_closure" column="ITEMCODE_CLOSURE" type="java.lang.String"/>
+        <property name="cottonedesc" column="COTTONEDESC" type="java.lang.String"/>
+        <property name="itemcode_cotton" column="ITEMCODE_COTTON" type="java.lang.String"/>
+        <property name="dessiccantsdesc" column="DESSICCANTSDESC" type="java.lang.String"/>
+        <property name="itemcode_desiccant" column="ITEMCODE_DESICCANT" type="java.lang.String"/>
+        <property name="qtysub" column="QTYSUB" type="java.lang.String"/>
+        <property name="submittedby" column="SUBMITTEDBY" type="java.lang.String"/>
+        <property name="submittedbydate" column="SUBMITTEDBYDATE" type="java.lang.String"/>
+        <property name="receivedby" column="RECEIVEDBY" type="java.lang.String"/> 
+        <property name="receivedbydate" column="RECEIVEDBYDATE" type="java.lang.String"/> 
+     </class>
+     
+     <class name="com.enviroapps.eapharmics.ui.pharma.DictionaryVO" table="EA_DICTIONARY_DETAIL">
+		<id name="eadictionarydetailid" column="EA_DICTIONARY_DETAIL_ID " type="java.lang.Long">
+		</id>
+		<property name="dictionarycode" column="DICTIONARY_CODE" type="java.lang.String"/>
+		<property name="dictionaryvalue" column="DICTIONARY_VALUE " type="java.lang.String"/>
+		<property name="dictionaryvaluedescription" column="DICTIONARY_VALUE_DESCRIPTION" type="java.lang.String"/>
+		<property name="displayorder" column=" DISPLAY_ORDER " type="java.lang.Long"/>
+        <property name="customfield1" column="CUSTOM_FIELD_1" type="java.lang.String"/>
+        <property name="customfield2" column="CUSTOM_FIELD_2" type="java.lang.String"/>
+        <property name="graphto" column="GRAPH_TO" type="java.lang.String"/>
+        <property name="active" column="ACTIVE" type="java.lang.String"/>
+        <property name="comments" column="COMMENTS" type="java.lang.String"/>
+        <property name="insertdate" column="INSERT_DATE" type="java.util.Date"/>
+        <property name="insertuser" column="INSERT_USER" type="java.lang.Long"/>
+        <property name="updatedate" column=" UPDATE_DATE" type="java.util.Date"/>
+        <property name="updateuser" column="UPDATE_USER" type="java.lang.Long"/>
+        <property name="auditid" column="AUDIT_ID" type="java.lang.Long"/>
+        <property name="startdate" column="START_DATE" type="java.util.Date"/>
+    </class>
+    
+    
+    <class name="com.enviroapps.eapharmics.bom.pharma.Emp" table="EMPLOYEE">
+		<id name="empno" column="EMP_NO" type="java.lang.Long">
+			<generator class="sequence">
+			    <param name="sequence">EMP_ID_SEQ</param>			
+			</generator>
+		</id>
+		<property name="empname" column="EMP_NAME" type="java.lang.String"/>
+		<property name="empdesc" column="EMP_DESCRIPTION" type="java.lang.String"/>
+    </class>
+    
+</hibernate-mapping>

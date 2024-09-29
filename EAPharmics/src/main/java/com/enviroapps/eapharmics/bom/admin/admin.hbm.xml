@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.enviroapps.eapharmics.bom.admin.ApplParameter" table="EA_APPL_PARAMETER">
+		<id name="applParameterId" column="APPL_PARAMETER_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">EA_APPL_PARAMETER_ID_SEQ</param>
+			</generator>
+		</id>
+		<property name="parameterName" column="PARAMETER_NAME" type="java.lang.String"/>
+		<property name="parameterDescription" column="PARAMETER_DESCRIPTION" type="java.lang.String"/>
+		<property name="parameterValue" column="PARAMETER_VALUE" type="java.lang.String"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="startDate" column="START_DATE" type="java.util.Date"/>
+		<property name="endDate" column="END_DATE" type="java.util.Date"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+		<property name="active" column="ACTIVE" type="yes_no"/>
+		<property name="parameterDataType" column="PARAMETER_DATA_TYPE" type="java.lang.String"/>
+		<property name="parameterDataLength" column="PARAMETER_VALUE_LENGTH" type="java.lang.Integer"/>	
+		<property name="locationId" column="LOCATION_ID" type="java.lang.Long"/>	
+	</class>
+	<class name="com.enviroapps.eapharmics.bom.admin.Location" table="EA_LOCATIONS">
+		<id name="locationId" column="LOCATION_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">EA_LOCATION_ID_SEQ</param>
+			</generator>
+		</id>
+		<property name="locationName" column="LOCATION_NAME" type="java.lang.String"/>
+		<property name="active" column="ACTIVE" type="yes_no"/>
+		<property name="addressLine1" column="ADDRESS_LINE1" type="java.lang.String"/>
+		<property name="addressLine2" column="ADDRESS_LINE2" type="java.lang.String"/>
+		<property name="city" column="CITY" type="java.lang.String"/>
+		<property name="state" column="STATE" type="java.lang.String"/>
+		<property name="country" column="COUNTRY" type="java.lang.String"/>
+		<property name="postalCode" column="POSTAL_CODE" type="java.lang.String"/>
+		<property name="contactPhone" column="CONTACT_PHONE" type="java.lang.String"/>
+		<property name="contactPerson" column="CONTACT_PERSON" type="java.lang.String"/>
+		<property name="locationDescription" column="LOCATION_DESCRIPTION" type="java.lang.String"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+		<property name="defaultLocale" column="DEFAULT_LOCALE" type="java.lang.String"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="startDate" column="START_DATE" type="java.util.Date"/>
+		<property name="endDate" column="END_DATE" type="java.util.Date"/>
+		<property name="timezoneName" column="TIMEZONE_NAME" type="java.lang.String"/>
+	</class>
+</hibernate-mapping>

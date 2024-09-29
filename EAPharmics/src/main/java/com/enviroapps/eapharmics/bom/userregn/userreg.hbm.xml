@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.enviroapps.eapharmics.ui.security.UserVO" table="EA_APP_USER">
+        <id name="appUserId" column="APP_USER_ID" type="java.lang.Long"/>        
+        <property name="firstName" column="FIRST_NAME" type="java.lang.String"/>        
+        <property name="lastName" column="LAST_NAME" type="java.lang.String"/>        
+        <property name="userName" column="USER_NAME" type="java.lang.String"/>        
+        <property name="email" column="EMAIL" type="java.lang.String"/>        
+        <property name="password" column="PASSWORD" type="java.lang.String"/>
+        <property name="isActive" column="ACTIVE" type="yes_no"/>
+        <property name="comments" column="COMMENTS" type="java.lang.String"/>
+        <property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+        <property name="insertUser" column="INSERT_USER" type="java.lang.String"/>
+        <property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+        <property name="updateUser" column="UPDATE_USER" type="java.lang.String"/>
+        <property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+        <property name="startDate" column="START_DATE" type="java.util.Date"/>
+        <property name="endDate" column="END_DATE" type="java.util.Date"/>
+        <property name="invalidLoginCount" column="INVALID_LOGIN_COUNT" type="int"/>
+    </class>
+    <class name="com.enviroapps.eapharmics.bom.security.AppUserAudit" table="EA_APP_USER_AUDIT">
+		<id name="appUserAuditId" column="APP_USER_AUDIT_ID" type="java.lang.Long"/>
+		<property name="appUserId" column="APP_USER_ID" type="java.lang.Long"/>
+		<property name="loginTime" column="LOGIN_TIME" type="java.util.Date"/>
+		<property name="logoutTime" column="LOGOUT_TIME" type="java.util.Date"/>
+		<property name="loginSuccess" column="LOGIN_SUCCESS" type="yes_no"/>
+    </class>
+    <class name="com.enviroapps.eapharmics.bom.security.AppArea" table="EA_APP_AREA">
+        <id name="appAreaId" column="APP_AREA_ID" type="java.lang.Long"/>        
+        <property name="areaDescription" column="AREA_DESCRIPTION" type="java.lang.String"/>        
+        <property name="comments" column="COMMENTS" type="java.lang.String"/>
+        <property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+        <property name="insertUser" column="INSERT_USER" type="java.lang.String"/>
+        <property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+        <property name="updateUser" column="UPDATE_USER" type="java.lang.String"/>
+        <property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+        <property name="startDate" column="START_DATE" type="java.util.Date"/>
+        <property name="endDate" column="END_DATE" type="java.util.Date"/>
+        <property name="isActive" column="ACTIVE" type="yes_no"/>
+
+<!-- 
+        <set name="address" table="address" lazy="false" cascade="save-update" inverse="true">  
+		<key column="person_id" />  
+		<one-to-many class="com.prince.school.db.dto.Address"/>  
+		</set>  
+ -->        
+    </class>
+    <class name="com.enviroapps.eapharmics.bom.security.AppModule" table="EA_APP_MODULE">
+        <id name="appModuleId" column="APP_MODULE_ID" type="java.lang.Long"/>        
+        <property name="appAreaId" column="APP_AREA_ID" type="java.lang.Long"/>        
+        <property name="moduleDescription" column="MODULE_DESCRIPTION" type="java.lang.String"/>        
+        <property name="comments" column="COMMENTS" type="java.lang.String"/>
+        <property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+        <property name="insertUser" column="INSERT_USER" type="java.lang.String"/>
+        <property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+        <property name="updateUser" column="UPDATE_USER" type="java.lang.String"/>
+        <property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+        <property name="startDate" column="START_DATE" type="java.util.Date"/>
+        <property name="endDate" column="END_DATE" type="java.util.Date"/>
+        <property name="isActive" column="ACTIVE" type="yes_no"/>
+        <many-to-one name="AppArea"
+            column="APP_AREA_ID"
+            insert="false" update="false" lazy="false"            
+            class="com.enviroapps.eapharmics.bom.security.AppArea"/>
+    </class>
+    <class name="com.enviroapps.eapharmics.bom.security.AppAccessTemplate" table="EA_APP_ACCESS_TEMPLATE">
+        <id name="appAccessTemplateId" column="APP_ACCESS_TEMPLATE_ID" type="java.lang.Long"/>        
+        <property name="templateName" column="TEMPLATE_NAME" type="java.lang.String"/>        
+        <property name="comments" column="COMMENTS" type="java.lang.String"/>
+        <property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+        <property name="insertUser" column="INSERT_USER" type="java.lang.String"/>
+        <property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+        <property name="updateUser" column="UPDATE_USER" type="java.lang.String"/>
+        <property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+        <property name="startDate" column="START_DATE" type="java.util.Date"/>
+        <property name="endDate" column="END_DATE" type="java.util.Date"/>
+        <property name="isActive" column="ACTIVE" type="yes_no"/>
+    </class>
+    <class name="com.enviroapps.eapharmics.bom.security.AppTemplateModule" table="EA_APP_TEMPLATE_MODULE">
+        <id name="appTemplateModuleId" column="APP_TEMPLATE_MODULE_ID" type="java.lang.Long"/>        
+        <property name="appModuleId" column="APP_MODULE_ID" type="java.lang.Long"/>       
+        <property name="isAccessible" column="IS_ACCESSIBLE" type="yes_no"/>
+        <property name="comments" column="COMMENTS" type="java.lang.String"/>
+        <property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+        <property name="insertUser" column="INSERT_USER" type="java.lang.String"/>
+        <property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+        <property name="updateUser" column="UPDATE_USER" type="java.lang.String"/>
+        <property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+        <property name="startDate" column="START_DATE" type="java.util.Date"/>
+        <property name="endDate" column="END_DATE" type="java.util.Date"/>
+        <property name="isActive" column="ACTIVE" type="yes_no"/>
+    </class>
+    <class name="com.enviroapps.eapharmics.bom.security.AppUserModuleAccess" table="EA_APP_USER_MODULE_ACCESS">
+        <id name="appUserModuleAccessId" column="APP_USER_MODULE_ACCESS_ID" type="java.lang.Long"/>        
+        <property name="appModuleId" column="APP_MODULE_ID" type="java.lang.Long"/>       
+        <property name="appUserId" column="APP_USER_ID" type="java.lang.Long"/>       
+        <property name="isAccessible" column="IS_ACCESSIBLE" type="yes_no"/>
+        <property name="comments" column="COMMENTS" type="java.lang.String"/>
+        <property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+        <property name="insertUser" column="INSERT_USER" type="java.lang.String"/>
+        <property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+        <property name="updateUser" column="UPDATE_USER" type="java.lang.String"/>
+        <property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+        <property name="startDate" column="START_DATE" type="java.util.Date"/>
+        <property name="endDate" column="END_DATE" type="java.util.Date"/>
+        <property name="isActive" column="ACTIVE" type="yes_no"/>
+        <many-to-one name="AppModule"
+            column="APP_MODULE_ID"
+            class="com.enviroapps.eapharmics.bom.security.AppModule"
+            insert="false" update="false" lazy="false"
+            fetch="join"/>
+    </class>
+    <class name="com.enviroapps.eapharmics.bom.security.ModuleAccessAudit" table="EA_MODULE_ACCESS_AUDIT">
+        <id name="moduleAccessAuditId" column="MODULE_ACCESS_AUDIT_ID" type="java.lang.Long"/>        
+        <property name="appModuleId" column="APP_MODULE_ID" type="java.lang.Long"/>       
+        <property name="appUserId" column="APP_USER_ID" type="java.lang.Long"/>       
+        <property name="activity" column="ACTIVITY" type="java.lang.String"/>
+        <property name="accessTime" column="ACCESS_TIME" type="java.util.Date"/>
+        <property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+    </class>
+</hibernate-mapping>

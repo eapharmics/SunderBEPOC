@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.enviroapps.eapharmics.bom.dictionary.DictionaryMaster" table="EA_DICTIONARY_MASTER">
+		<id name="eaDictionaryMasterId" column="EA_DICTIONARY_MASTER_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">REF_SEQ</param>
+			</generator>
+		</id>
+		<property name="dictionaryCode" column="DICTIONARY_CODE" type="java.lang.String"/>
+		<property name="dictionaryDescription" column="DICTIONARY_DESCRIPTION" type="java.lang.String"/>
+		<property name="active" column="ACTIVE" type="yes_no"/>
+		<property name="graphDictionary" column="GRAPH_DICTIONARY" type="yes_no"/>
+		<property name="customField1" column="CUSTOM_FIELD_1" type="java.lang.String"/>
+		<property name="customField2" column="CUSTOM_FIELD_2" type="java.lang.String"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="startDate" column="START_DATE" type="java.util.Date"/>
+		<property name="endDate" column="END_DATE" type="java.util.Date"/>
+		<property name="showDescription" column="SHOW_DESCRIPTION" type="yes_no"/>
+		<property name="allowChangeDisplayOrder" column="ALLOW_CHANGE_DISPLAY_ORDER" type="yes_no"/>
+		<property name="codeDisplay" column="CODE_DISPLAY" type="java.lang.String"/>
+		<property name="valueDisplay" column="VALUE_DISPLAY" type="java.lang.String"/>
+		<property name="globalDictionary" column="GLOBAL_DICTIONARY" type="yes_no"/>
+	</class>
+	
+	<class name="com.enviroapps.eapharmics.bom.dictionary.DictionaryDetail" table="EA_DICTIONARY_DETAIL"
+		optimistic-lock="version">
+		<id name="eaDictionaryDetailId" column="EA_DICTIONARY_DETAIL_ID" type="java.lang.Long">
+			<generator class="sequence">
+				<param name="sequence">REF_SEQ</param>
+			</generator>
+		</id>
+		<version name="version" column="VERSION"/>
+		<property name="dictionaryCode" column="DICTIONARY_CODE" type="java.lang.String"/>
+		<property name="dictionaryValue" column="DICTIONARY_VALUE" type="java.lang.String"/>
+		<property name="dictionaryValueDescription" column="DICTIONARY_VALUE_DESCRIPTION" type="java.lang.String"/>
+		<property name="displayOrder" column="DISPLAY_ORDER" type="int"/>
+		<property name="customField1" column="CUSTOM_FIELD_1" type="java.lang.String"/>
+		<property name="customField2" column="CUSTOM_FIELD_2" type="java.lang.String"/>
+		<property name="graphTo" column="GRAPH_TO" type="java.lang.String"/>
+		<property name="active" column="ACTIVE" type="yes_no"/>
+		<property name="comments" column="COMMENTS" type="java.lang.String"/>
+		<property name="insertDate" column="INSERT_DATE" type="java.util.Date"/>
+		<property name="insertUser" column="INSERT_USER" type="java.lang.Long"/>
+		<property name="updateDate" column="UPDATE_DATE" type="java.util.Date"/>
+		<property name="updateUser" column="UPDATE_USER" type="java.lang.Long"/>
+		<property name="auditId" column="AUDIT_ID" type="java.lang.Long"/>
+		<property name="locationId" column="LOCATION_ID" type="java.lang.Long"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,16 @@
+<!--
+
+    Context configuration file for the Tomcat Manager Web App
+
+    Context configuration for Rewards Web App.
+	Edit the docBase attribute to point right webroot directory.
+	Copy this file to Tomcat config folder [Eg: C:\jakarta-tomcat-5.0.28\conf\Catalina\localhost].	
+-->
+
+<Context path="/rewards" docBase="C:\demo\eclipse_ide\cb\Rewards\webroot"  privileged="true" antiResourceLocking="false" antiJARLocking="false">
+
+  <!-- Link to the user database we will get roles from -->
+  <ResourceLink name="users" global="UserDatabase" type="org.apache.catalina.UserDatabase"/>
+
+</Context>
+
