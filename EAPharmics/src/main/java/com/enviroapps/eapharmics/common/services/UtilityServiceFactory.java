@@ -3,7 +3,6 @@ package com.enviroapps.eapharmics.common.services;
 import java.util.Hashtable;
 
 import com.enviroapps.eapharmics.common.services.configurator.Configurator;
-import com.enviroapps.eapharmics.common.services.logging.ILogger;
 import com.enviroapps.eapharmics.ui.Constants;
 import com.enviroapps.eapharmics.vo.security.UserVO;
 
@@ -31,9 +30,6 @@ public class UtilityServiceFactory {
 	// distribute locks for services
 	private Hashtable serviceObjectLocks = null;
 
-	// logging singleton
-	private ILogger logger = null;
-
 	// configuration singleton
 	private Configurator configurator = null;
 
@@ -57,8 +53,8 @@ public class UtilityServiceFactory {
 	}
 
 	/**
-	 * Returns the configurator service object. If the object is not yet
-	 * created, it creates it.
+	 * Returns the configurator service object. If the object is not yet created, it
+	 * creates it.
 	 *
 	 * @return configurator
 	 */
@@ -67,18 +63,8 @@ public class UtilityServiceFactory {
 	}
 
 	/**
-	 * Returns the logger service object. If the object is not yet created, it
+	 * Returns the configurator service object. If the object is not yet created, it
 	 * creates it.
-	 *
-	 * @return logger
-	 */
-	public static ILogger getLogger() {
-		return getInstance().getLoggerInternal();
-	}
-
-	/**
-	 * Returns the configurator service object. If the object is not yet
-	 * created, it creates it.
 	 *
 	 * @return configurator
 	 */
@@ -105,48 +91,17 @@ public class UtilityServiceFactory {
 	}
 
 	/**
-	 * Returns the logger service object. If the object is not yet created, it
-	 * creates it.
+	 * Helper method to create service object. Create a service based on the class
+	 * name provided.
 	 *
-	 * @return logger
-	 */
-	private ILogger getLoggerInternal() {
-		if (logger != null) {
-			return logger;
-		} else {
-			Object lockObject = serviceObjectLocks.get(logServiceName);
-			// use the service lock to ensure thread safety during logging
-			// initialization
-			synchronized (lockObject) {
-				if (logger != null) {
-					return logger;
-				} else {
-					// Instantiate logging service
-					String loggerClassName = getConfigurator().getProperty(
-							"log.logger.class");
-					ILogger newLogger = (ILogger) createServiceObject(loggerClassName);
-					logger = newLogger;
-					return logger;
-				}
-			}
-		}
-	}
-
-	/**
-	 * Helper method to create service object. Create a service based on the
-	 * class name provided.
-	 *
-	 * @param serviceClassName
-	 *            a valid class name in the class path to create a new service
-	 *            object from
+	 * @param serviceClassName a valid class name in the class path to create a new
+	 *                         service object from
 	 * @return the service object created
-	 * @throws IllegalArgumentException
-	 *             if the class name given is not valid
+	 * @throws IllegalArgumentException if the class name given is not valid
 	 */
 	private Object createServiceObject(String serviceClassName) {
 		try {
-			Class serviceClass = Thread.currentThread().getContextClassLoader()
-					.loadClass(serviceClassName);
+			Class serviceClass = Thread.currentThread().getContextClassLoader().loadClass(serviceClassName);
 			Object serviceObject = serviceClass.newInstance();
 			return serviceObject;
 		} catch (ClassNotFoundException e) {
@@ -156,16 +111,15 @@ public class UtilityServiceFactory {
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		}
-		throw new IllegalArgumentException("Invalid service class name: "
-				+ serviceClassName);
+		throw new IllegalArgumentException("Invalid service class name: " + serviceClassName);
 	}
 
 	/**
 	 * @return
 	 */
 	public static UserVO getUserFromFlexSession() {
-		//@TODO Sundar
-		//FlexSession session = FlexContext.getFlexSession();
+		// @TODO Sundar
+		// FlexSession session = FlexContext.getFlexSession();
 		HttpSession session = null;
 		if (session != null) {
 			UserVO userVO = (UserVO) session.getAttribute(Constants.USER_ATTRIBUTE);
@@ -180,8 +134,8 @@ public class UtilityServiceFactory {
 	 * @return
 	 */
 	public static long getSelectedLocationTimezoneOffset() {
-		//@TODO Sundar
-		//FlexSession session = FlexContext.getFlexSession();
+		// @TODO Sundar
+		// FlexSession session = FlexContext.getFlexSession();
 		HttpSession session = null;
 		if (session != null) {
 			Long val = (Long) session.getAttribute(Constants.SELECTED_LOCATION_UTC_OFFSET);
