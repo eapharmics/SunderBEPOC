@@ -8,11 +8,11 @@ import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.enviroapps.eapharmics.bom.dictionary.DictionaryDetail;
 import com.enviroapps.eapharmics.bom.dictionary.DictionaryMaster;
-import com.enviroapps.eapharmics.common.services.UtilityServiceFactory;
-import com.enviroapps.eapharmics.common.services.logging.ILogger;
 import com.enviroapps.eapharmics.das.persistence.DataAccessConstants;
 import com.enviroapps.eapharmics.das.persistence.hibernate.HibernatePersistenceFactory;
 import com.enviroapps.eapharmics.das.persistence.hibernate.HibernatePersistenceManager;
@@ -27,12 +27,12 @@ import com.enviroapps.eapharmics.exception.EAPharmicsException;
 public class DictionaryFactory extends HibernatePersistenceFactory implements
 	DataAccessConstants {
 
-	private static ILogger log = UtilityServiceFactory.getLogger();
+	private static final Logger logger = LoggerFactory.getLogger(DictionaryFactory.class);
 
 	private DictionaryFactory() {
 		persistenceManager = (HibernatePersistenceManager) HibernatePersistenceManagerFactory
 				.getInstance().getPersistenceManager();
-		log.debug(this, "SecurityFactory", persistenceManager);
+		logger.debug("SecurityFactory", persistenceManager);
 	}
 
 	private static DictionaryFactory instance = new DictionaryFactory();

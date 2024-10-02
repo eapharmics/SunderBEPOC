@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,7 @@ import com.enviroapps.eapharmics.persistence.AdminFactory;
 import com.enviroapps.eapharmics.services.SecurityImpl;
 import com.enviroapps.eapharmics.ui.AbstractEAPharmicsService;
 import com.enviroapps.eapharmics.ui.Constants;
+import com.enviroapps.eapharmics.ui.product.ProductService;
 import com.enviroapps.eapharmics.vo.security.EditReasonVO;
 import com.enviroapps.eapharmics.vo.security.LoginRequestVO;
 import com.enviroapps.eapharmics.vo.security.ModuleAccessAuditVO;
@@ -38,6 +41,8 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/eapharmics")
 @RequiredArgsConstructor
 public class SecurityService extends AbstractEAPharmicsService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(SecurityService.class);
 
 	/*
 	 * (non-Javadoc)
@@ -75,7 +80,7 @@ public class SecurityService extends AbstractEAPharmicsService {
 			}
 
 		} catch (RuntimeException e) {
-			UtilityServiceFactory.getLogger().error(this, "authenticate", e);
+			logger.error("authenticate", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 		// setContext(user);
@@ -111,7 +116,7 @@ public class SecurityService extends AbstractEAPharmicsService {
 			userVO = impl.changePassword(userId, password, newPassword);
 
 		} catch (RuntimeException e) {
-			UtilityServiceFactory.getLogger().error(this, "authenticate", e);
+			logger.error("authenticate", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 		// setContext(user);
@@ -128,7 +133,7 @@ public class SecurityService extends AbstractEAPharmicsService {
 			List list = impl.getAllUser();
 			return list;
 		} catch (Exception e) {
-			logger.error(this, "getAllUser", e);
+			logger.error("getAllUser", e);
 			throw new EAPharmicsException("Unknown error. Please contact System Administrator!");
 		}
 	}
@@ -145,7 +150,7 @@ public class SecurityService extends AbstractEAPharmicsService {
 			List list = impl.getAppUserAuditForUser(appUserId);
 			return list;
 		} catch (Exception e) {
-			logger.error(this, "getAppUserAuditForUser", e);
+			logger.error("getAppUserAuditForUser", e);
 			throw new EAPharmicsException("Unknown error. Please contact System Administrator!");
 		}
 	}
@@ -167,7 +172,7 @@ public class SecurityService extends AbstractEAPharmicsService {
 			throw e;
 		} catch (Exception e) {
 			// e.printStackTrace();
-			UtilityServiceFactory.getLogger().error(this, "createUser", e);
+			logger.error("createUser", e);
 
 			throw new EAPharmicsException("system error. Please cotact system administrator");
 		}
@@ -188,7 +193,7 @@ public class SecurityService extends AbstractEAPharmicsService {
 		} catch (EAPharmicsException e) {
 			throw e;
 		} catch (Exception e) {
-			logger.error(this, "updateUser", e);
+			logger.error("updateUser", e);
 			throw new EAPharmicsException("Unable to process Request. Contact Support.", e);
 		}
 	}
@@ -224,7 +229,7 @@ public class SecurityService extends AbstractEAPharmicsService {
 		} catch (EAPharmicsException e) {
 			throw e;
 		} catch (Exception e) {
-			logger.error(this, "updateUserAccess", e);
+			logger.error("updateUserAccess", e);
 			throw new EAPharmicsException("Unable to process Request. Contact Support.", e);
 		}
 	}
@@ -236,7 +241,7 @@ public class SecurityService extends AbstractEAPharmicsService {
 			SecurityImpl impl = new SecurityImpl();
 			return impl.getPasswordHash(userName, password);
 		} catch (Exception e) {
-			logger.error(this, "getPasswordHash", e);
+			logger.error("getPasswordHash", e);
 			throw new EAPharmicsException("Unable to process Request. Contact Support.", e);
 		}
 	}
@@ -258,7 +263,7 @@ public class SecurityService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getEditReasons", e);
+			logger.error("getEditReasons", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -281,7 +286,7 @@ public class SecurityService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "addEditReason", e);
+			logger.error("addEditReason", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 	}
@@ -303,7 +308,7 @@ public class SecurityService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getAppAccessTemplates", e);
+			logger.error("getAppAccessTemplates", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -327,7 +332,7 @@ public class SecurityService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "updateAppAccessTemplate", e);
+			logger.error("updateAppAccessTemplate", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 		return list;
@@ -351,7 +356,7 @@ public class SecurityService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "addAppAccessTemplate", e);
+			logger.error("addAppAccessTemplate", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 		return list;
@@ -366,7 +371,7 @@ public class SecurityService extends AbstractEAPharmicsService {
 		} catch (EAPharmicsException e) {
 			throw e;
 		} catch (Exception e) {
-			logger.error(this, "updateTemplateAccess", e);
+			logger.error("updateTemplateAccess", e);
 			throw new EAPharmicsException("Unable to process Request. Contact Support.", e);
 		}
 	}
@@ -389,7 +394,7 @@ public class SecurityService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getModuleAccessAudits", e);
+			logger.error("getModuleAccessAudits", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -412,7 +417,7 @@ public class SecurityService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "createModuleAccessAudit", e);
+			logger.error("createModuleAccessAudit", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 	}
@@ -433,7 +438,7 @@ public class SecurityService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getProductRegistrations", e);
+			logger.error("getProductRegistrations", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -458,7 +463,7 @@ public class SecurityService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "updateProductRegistration", e);
+			logger.error("updateProductRegistration", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 		return list;
@@ -483,7 +488,7 @@ public class SecurityService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "addProductRegistration", e);
+			logger.error("addProductRegistration", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 		return list;
@@ -594,7 +599,7 @@ public class SecurityService extends AbstractEAPharmicsService {
 			return list;
 
 		} catch (Exception e) {
-			logger.error(this, "getAllModules", e);
+			logger.error("getAllModules", e);
 			return null;
 		}
 	}
@@ -623,7 +628,7 @@ public class SecurityService extends AbstractEAPharmicsService {
 			}
 			return userVO;
 		} catch (Exception e) {
-			logger.error(this, "updatedSelectedLocation", e);
+			logger.error("updatedSelectedLocation", e);
 			throw new EAPharmicsException("Unknown Error. Please contact the System Administrator!");
 		}
 	}

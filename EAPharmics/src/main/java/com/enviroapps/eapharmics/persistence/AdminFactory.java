@@ -9,11 +9,11 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.enviroapps.eapharmics.bom.admin.ApplParameter;
 import com.enviroapps.eapharmics.bom.admin.Location;
-import com.enviroapps.eapharmics.common.services.UtilityServiceFactory;
-import com.enviroapps.eapharmics.common.services.logging.ILogger;
 import com.enviroapps.eapharmics.das.persistence.DataAccessConstants;
 import com.enviroapps.eapharmics.das.persistence.hibernate.HibernatePersistenceFactory;
 import com.enviroapps.eapharmics.das.persistence.hibernate.HibernatePersistenceManager;
@@ -28,12 +28,12 @@ import com.enviroapps.eapharmics.vo.admin.TimezoneVO;
 public class AdminFactory extends HibernatePersistenceFactory implements
 	DataAccessConstants {
 
-	private static ILogger log = UtilityServiceFactory.getLogger();
+	private static final Logger logger = LoggerFactory.getLogger(AdminFactory.class);
 
 	private AdminFactory() {
 		persistenceManager = (HibernatePersistenceManager) HibernatePersistenceManagerFactory
 				.getInstance().getPersistenceManager();
-		log.debug(this, "AdminFactory", persistenceManager);
+		logger.debug("AdminFactory", persistenceManager);
 	}
 
 	private static AdminFactory instance = new AdminFactory();

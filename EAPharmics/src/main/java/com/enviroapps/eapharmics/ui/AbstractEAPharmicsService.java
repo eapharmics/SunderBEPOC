@@ -4,7 +4,6 @@
 package com.enviroapps.eapharmics.ui;
 
 import com.enviroapps.eapharmics.common.services.UtilityServiceFactory;
-import com.enviroapps.eapharmics.common.services.logging.ILogger;
 import com.enviroapps.eapharmics.exception.EAPharmicsException;
 import com.enviroapps.eapharmics.vo.security.UserVO;
 
@@ -15,8 +14,6 @@ import jakarta.servlet.http.HttpServletRequest;
  *
  */
 public abstract class AbstractEAPharmicsService {
-
-	protected ILogger logger = UtilityServiceFactory.getLogger();
 	
 	/**
 	 * 

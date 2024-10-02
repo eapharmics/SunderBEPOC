@@ -7,6 +7,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.ImprovedNamingStrategy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.enviroapps.eapharmics.common.ObfuscationUtil;
 import com.enviroapps.eapharmics.common.services.UtilityServiceFactory;
@@ -21,6 +23,8 @@ import com.enviroapps.eapharmics.das.persistence.config.hibernate.HibernatePersi
  * @version $Revision: 1.1 $
  */
 public class HibernatePersistenceManager implements PersistenceManager {
+	
+	private static final Logger logger = LoggerFactory.getLogger(HibernatePersistenceManager.class);
 
 	private static HibernatePersistenceManager instance;// = new HibernatePersistenceManager();
 
@@ -76,8 +80,7 @@ public class HibernatePersistenceManager implements PersistenceManager {
 		login();
 
 		// logging persistence initialization
-		UtilityServiceFactory.getLogger().info(this, "init",
-				"Persistence manager is initialized");
+		logger.info("init", "Persistence manager is initialized");
 	}
 
 	public Session getCurrentSession() {
@@ -148,10 +151,10 @@ public class HibernatePersistenceManager implements PersistenceManager {
 //			session.flush();
 			trans.commit();
 			if (session.isDirty()) {
-				UtilityServiceFactory.getLogger().debug(this, "commitTransaction", " session is dirty.");
+				logger.debug("commitTransaction", " session is dirty.");
 				session.flush();
 			} else
-				UtilityServiceFactory.getLogger().debug(this, "commitTransaction", "session is clean.");
+				logger.debug("commitTransaction", "session is clean.");
 			session.close();
 			currentUnitOfWorks.set(null);
 			trans = null;
@@ -189,8 +192,7 @@ public class HibernatePersistenceManager implements PersistenceManager {
 	 * External Transaction Controller if it's set to true i.e. JTS is enabled
 	 */
 	public void init() {
-		UtilityServiceFactory.getLogger().info(this, "init",
-				"Persistence manager is being initialized");
+		logger.info("init", "Persistence manager is being initialized");
 
 		// customization of the hibernate cfg properties are stored here.
 		Properties custom = new Properties();
@@ -229,8 +231,7 @@ public class HibernatePersistenceManager implements PersistenceManager {
 				sessionFactory = cfg.buildSessionFactory();
 			}
 		} catch (Exception e) {
-			UtilityServiceFactory.getLogger().info(this, "init",
-					"ERROR: " + e.getMessage());
+			logger.info("init", "ERROR: " + e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -266,32 +267,20 @@ public class HibernatePersistenceManager implements PersistenceManager {
 	public void preInit() {
 		// Boolean value whether to use External Transaction controller or not
 		persistenceConfig
-				.setUseExternalTransactionController(UtilityServiceFactory
-						.getConfigurator().getBoolean(
-								"dataaccess.use.external.txn.controller"));
+				.setUseExternalTransactionController(false);
 
 		// Class name to register a listener to the externally controlled
 		// transaction.
 		persistenceConfig
-				.setExternalTransactionControllerClassName(UtilityServiceFactory
-						.getConfigurator().getProperty(
-								"dataaccess.external.txn.controller.class"));
+				.setExternalTransactionControllerClassName(null);
 
 		// Hibernate session xml file name to be loaded
-		persistenceConfig.setSessionXmlFile(UtilityServiceFactory
-				.getConfigurator().getProperty(
-						"dataaccess.hibernate.session.xml"));
+		persistenceConfig.setSessionXmlFile("hibernate.cfg.xml");
 
 		// Hibernate Session Broker name -- not currently used.
-		persistenceConfig.setSessionBrokerName(UtilityServiceFactory
-				.getConfigurator().getProperty(
-						"dataaccess.hibernate.session.jndi.name"));
+		persistenceConfig.setSessionBrokerName(null);
 
-		UtilityServiceFactory.getLogger().debug(
-				this,
-				"preInit",
-				persistenceConfig.getSessionXmlFile() + " "
-						+ persistenceConfig.getSessionXmlFile());
+		logger.debug("preInit", persistenceConfig.getSessionXmlFile() + " " + persistenceConfig.getSessionXmlFile());
 
 	}
 

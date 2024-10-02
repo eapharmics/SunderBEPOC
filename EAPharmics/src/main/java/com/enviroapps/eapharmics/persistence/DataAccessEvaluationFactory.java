@@ -10,11 +10,11 @@ import org.hibernate.Hibernate;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.enviroapps.eapharmics.bom.dictionary.DictionaryDetail;
 import com.enviroapps.eapharmics.bom.product.ProductTest;
-import com.enviroapps.eapharmics.common.services.UtilityServiceFactory;
-import com.enviroapps.eapharmics.common.services.logging.ILogger;
 import com.enviroapps.eapharmics.das.persistence.DataAccessConstants;
 import com.enviroapps.eapharmics.das.persistence.hibernate.HibernatePersistenceFactory;
 import com.enviroapps.eapharmics.das.persistence.hibernate.HibernatePersistenceManager;
@@ -28,12 +28,12 @@ import com.enviroapps.eapharmics.vo.newstudy.NewStudyProductVO;
 public class DataAccessEvaluationFactory extends HibernatePersistenceFactory
 		implements DataAccessConstants {
 
-	private static ILogger log = UtilityServiceFactory.getLogger();
+	private static final Logger logger = LoggerFactory.getLogger(DataAccessEvaluationFactory.class);
 
 	private DataAccessEvaluationFactory() {
 		persistenceManager = (HibernatePersistenceManager) HibernatePersistenceManagerFactory
 				.getInstance().getPersistenceManager();
-		log.debug(this, "DataAccessEvaluation", persistenceManager);
+		logger.debug("DataAccessEvaluation", persistenceManager);
 	}
 
 	private static DataAccessEvaluationFactory instance = new DataAccessEvaluationFactory();

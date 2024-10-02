@@ -2,14 +2,12 @@ package com.enviroapps.eapharmics.ui;
 
 import java.io.IOException;
 
+import com.enviroapps.eapharmics.vo.security.UserVO;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.enviroapps.eapharmics.common.services.UtilityServiceFactory;
-import com.enviroapps.eapharmics.common.services.logging.ILogger;
-import com.enviroapps.eapharmics.vo.security.UserVO;
 
 public class EAPharmicsServlet extends HttpServlet {
 	/**
@@ -88,7 +86,5 @@ public class EAPharmicsServlet extends HttpServlet {
 		return debug;
 	}
 	
-	public ILogger getLogger() {
-		return UtilityServiceFactory.getLogger();
-	}
+	
 }

@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +16,7 @@ import com.enviroapps.eapharmics.exception.EAPharmicsException;
 import com.enviroapps.eapharmics.services.ProductImpl;
 import com.enviroapps.eapharmics.ui.AbstractEAPharmicsService;
 import com.enviroapps.eapharmics.ui.Constants;
+import com.enviroapps.eapharmics.ui.newstudy.NewStudyLoginService;
 import com.enviroapps.eapharmics.vo.product.InventoryVO;
 import com.enviroapps.eapharmics.vo.product.ProductSpecVO;
 import com.enviroapps.eapharmics.vo.product.ProductSummaryVO;
@@ -28,7 +31,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductService extends AbstractEAPharmicsService {
 
-
+	private static final Logger logger = LoggerFactory.getLogger(ProductService.class);
+	
 	/**
 	 * @param productCode
 	 * @return
@@ -46,7 +50,7 @@ public class ProductService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "productExistsForProductCode", e);
+			logger.error("productExistsForProductCode", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 	}
@@ -69,7 +73,7 @@ public class ProductService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getAllProductsSummary", e);
+			logger.error("getAllProductsSummary", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -93,7 +97,7 @@ public class ProductService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getAllProductsSummary", e);
+			logger.error("getAllProductsSummary", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -117,7 +121,7 @@ public class ProductService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getAllProductsSummary", e);
+			logger.error("getAllProductsSummary", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -141,7 +145,7 @@ public class ProductService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getAllProductsSummaryForApproval", e);
+			logger.error("getAllProductsSummaryForApproval", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -172,7 +176,7 @@ public class ProductService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getAllProductsSummaryForAnnualReport", e);
+			logger.error("getAllProductsSummaryForAnnualReport", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -196,7 +200,7 @@ public class ProductService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getProducts", e);
+			logger.error("getProducts", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -220,7 +224,7 @@ public class ProductService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getProduct", e);
+			logger.error("getProduct", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 	}
@@ -248,7 +252,7 @@ public class ProductService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "updateProduct", e);
+			logger.error("updateProduct", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 		return list;
@@ -273,7 +277,7 @@ public class ProductService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "updateProduct", e);
+			logger.error("updateProduct", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 	}
@@ -297,7 +301,7 @@ public class ProductService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "updateProduct", e);
+			logger.error("updateProduct", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 		return list;
@@ -321,7 +325,7 @@ public class ProductService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getAllTests", e);
+			logger.error("getAllTests", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -346,7 +350,7 @@ public class ProductService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "saveTest", e);
+			logger.error("saveTest", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 		return list;
@@ -372,7 +376,7 @@ public class ProductService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "deleteTest", e);
+			logger.error("deleteTest", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 		return list;
@@ -397,7 +401,7 @@ public class ProductService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getInventorys", e);
+			logger.error("getInventorys", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -421,7 +425,7 @@ public class ProductService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getProductSpecs", e);
+			logger.error("getProductSpecs", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -446,7 +450,7 @@ public class ProductService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "updateProductSpec", e);
+			logger.error("updateProductSpec", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 		return list;
@@ -469,7 +473,7 @@ public class ProductService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getAllApprovedProductsSummary", e);
+			logger.error("getAllApprovedProductsSummary", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -494,7 +498,7 @@ public class ProductService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getAllApprovedProductsSummaryWithGraph", e);
+			logger.error("getAllApprovedProductsSummaryWithGraph", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -513,7 +517,7 @@ public class ProductService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getAllApprovedProductsSummaryWithGraph", e);
+			logger.error("getAllApprovedProductsSummaryWithGraph", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;

@@ -12,6 +12,7 @@ import org.hibernate.TransientObjectException;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.SimpleExpression;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.enviroapps.eapharmics.common.Utility;
 import com.enviroapps.eapharmics.common.services.UtilityServiceFactory;
@@ -43,7 +44,8 @@ public abstract class HibernatePersistenceFactory implements PersistenceFactory 
 	// Not used
 	protected boolean auditingEnabled;
 
-	private static Integer maxResultsetSize = null; 
+	@Value("${dataaccess.max.resultset.size}")
+	private Integer maxResultsetSize = null; 
 	
 	/**
 	 * Get an instance of DAS Framework Query Builder class.

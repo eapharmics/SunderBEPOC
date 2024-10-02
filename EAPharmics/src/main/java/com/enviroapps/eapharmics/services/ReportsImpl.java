@@ -9,12 +9,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.enviroapps.eapharmics.das.persistence.hibernate.HibernatePersistenceManager;
 import com.enviroapps.eapharmics.exception.EAPharmicsException;
@@ -23,6 +21,10 @@ import com.enviroapps.eapharmics.util.PdfHelper;
 import com.enviroapps.eapharmics.vo.newstudy.RegressionDataContainerVO;
 import com.enviroapps.eapharmics.vo.reports.ReportsVO;
 
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+
 
 
 /**
@@ -30,6 +32,8 @@ import com.enviroapps.eapharmics.vo.reports.ReportsVO;
  * 
  */
 public class ReportsImpl extends AbstractServiceImpl {
+	
+	private static final Logger logger = LoggerFactory.getLogger(ReportsImpl.class);
 	
 	private Integer getReportRunSequence() throws Exception {
 		Integer reportRunSequence = new Integer(0);
@@ -76,7 +80,7 @@ public class ReportsImpl extends AbstractServiceImpl {
             reportsVO.setReturnURL(EAReportsHelper.REPORTS_BASE_URL + outputFile.getName());
 			jpr = null;
 		} catch (Throwable e) {
-			log.error(this, "JRException", e);
+			logger.error("JRException", e);
 			throw new EAPharmicsException("Error running report");
 		}
 		
@@ -91,7 +95,7 @@ public class ReportsImpl extends AbstractServiceImpl {
 			conn = session.connection();
 			return runReport(report, conn);
 		} catch (Throwable e) {
-			log.error(this, "runMultipleReports", e);
+			logger.error("runMultipleReports", e);
 			throw new EAPharmicsException("Error running report");
 		} finally {
 	        if ( conn != null) {
@@ -99,7 +103,7 @@ public class ReportsImpl extends AbstractServiceImpl {
 					conn.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
-					log.error(this, "SQLException", e);
+					logger.error("SQLException", e);
 				}
 	        }
 		}
@@ -128,7 +132,7 @@ public class ReportsImpl extends AbstractServiceImpl {
 			mergedPdfOutputFile = outputFile.getName();
 			PdfHelper.mergePdfs(pdfOutputFiles, EAReportsHelper.REPORTS_OUTPUT_DIR + "/" + mergedPdfOutputFile);
 		} catch (Throwable e) {
-			log.error(this, "runMultipleReports", e);
+			logger.error("runMultipleReports", e);
 			throw new EAPharmicsException("Error running report");
 		} finally {
 	        if ( conn != null) {
@@ -136,7 +140,7 @@ public class ReportsImpl extends AbstractServiceImpl {
 					conn.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
-					log.error(this, "SQLException", e);
+					logger.error("SQLException", e);
 				}
 	        }
 		}
@@ -163,7 +167,7 @@ public class ReportsImpl extends AbstractServiceImpl {
 			}
 	    	return ret;
     	} catch (Exception e) {
-			log.error(this, "getRegressionAscii", e);
+			logger.error("getRegressionAscii", e);
 		}
     	return null;
 	}
@@ -211,10 +215,10 @@ public class ReportsImpl extends AbstractServiceImpl {
 			jpr = null;
 			conn.commit();
 		} catch(EAPharmicsException ex) {
-			log.error(this, "EAPharmicsException", ex);
+			logger.error("EAPharmicsException", ex);
 			throw ex;
 		} catch (Exception e) {
-			log.error(this, "JRException", e);
+			logger.error("JRException", e);
 			throw new EAPharmicsException("Error running report");
 		} finally {
             if ( conn != null) {
@@ -223,7 +227,7 @@ public class ReportsImpl extends AbstractServiceImpl {
 					conn.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
-					log.error(this, "SQLException", e);
+					logger.error("SQLException", e);
 				}
             }
 		}

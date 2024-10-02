@@ -9,6 +9,8 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.enviroapps.eapharmics.bom.product.Inventory;
 import com.enviroapps.eapharmics.bom.product.Product;
@@ -18,8 +20,6 @@ import com.enviroapps.eapharmics.bom.product.Protocol;
 import com.enviroapps.eapharmics.bom.product.ProtocolDetail;
 import com.enviroapps.eapharmics.bom.product.Test;
 import com.enviroapps.eapharmics.common.Utility;
-import com.enviroapps.eapharmics.common.services.UtilityServiceFactory;
-import com.enviroapps.eapharmics.common.services.logging.ILogger;
 import com.enviroapps.eapharmics.das.persistence.DataAccessConstants;
 import com.enviroapps.eapharmics.das.persistence.hibernate.HibernatePersistenceFactory;
 import com.enviroapps.eapharmics.das.persistence.hibernate.HibernatePersistenceManager;
@@ -34,12 +34,12 @@ import com.enviroapps.eapharmics.vo.security.UserVO;
 public class ProductFactory extends HibernatePersistenceFactory implements
 	DataAccessConstants {
 
-	private static ILogger log = UtilityServiceFactory.getLogger();
+	private static final Logger logger = LoggerFactory.getLogger(ProductFactory.class);
 
 	private ProductFactory() {
 		persistenceManager = (HibernatePersistenceManager) HibernatePersistenceManagerFactory
 				.getInstance().getPersistenceManager();
-		log.debug(this, "ProductFactory", persistenceManager);
+		logger.debug("ProductFactory", persistenceManager);
 	}
 
 	private static ProductFactory instance = new ProductFactory();

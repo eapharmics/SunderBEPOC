@@ -18,8 +18,10 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.enviroapps.eapharmics.bom.admin.ApplParameter;
-import com.enviroapps.eapharmics.common.services.UtilityServiceFactory;
 import com.enviroapps.eapharmics.persistence.AdminFactory;
 import com.enviroapps.eapharmics.ui.Constants;
 
@@ -29,6 +31,8 @@ import com.enviroapps.eapharmics.ui.Constants;
  */
 public class MailHelper {
 
+	private static final Logger logger = LoggerFactory.getLogger(MailHelper.class);
+	
 	public static void sendMail(List toEmailAddresses, String subject,
 			String mailText) {
 		try {
@@ -57,10 +61,10 @@ public class MailHelper {
 				try {
 					port = Integer.parseInt(parameter.getParameterValue());
 				} catch (NumberFormatException e) {
-					UtilityServiceFactory.getLogger().debug("MailHelper",
+					logger.debug("MailHelper",
 							"sendMail",
 							"Error in configured port. Using default 587.");
-					UtilityServiceFactory.getLogger().debug("MailHelper",
+					logger.debug("MailHelper",
 							"sendMail", e);
 				}
 			}
@@ -121,8 +125,7 @@ public class MailHelper {
 			System.err.println("Unable to send mail to "
 					+ toEmailAddresses.size() + " participants. Message: "
 					+ mailText);
-			UtilityServiceFactory.getLogger()
-					.error("MailHelper", "sendMail", e);
+			logger.error("MailHelper", "sendMail", e);
 		}
 
 	}

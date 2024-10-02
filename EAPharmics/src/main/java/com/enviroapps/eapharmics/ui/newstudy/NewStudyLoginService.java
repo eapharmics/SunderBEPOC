@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +15,7 @@ import com.enviroapps.eapharmics.exception.EAPharmicsException;
 import com.enviroapps.eapharmics.services.NewStudyLoginImpl;
 import com.enviroapps.eapharmics.services.ProductImpl;
 import com.enviroapps.eapharmics.ui.AbstractEAPharmicsService;
+import com.enviroapps.eapharmics.ui.daes.DataAccessEvaluationService;
 import com.enviroapps.eapharmics.util.LabelHelper;
 import com.enviroapps.eapharmics.vo.newstudy.CodeSwitchProductVO;
 import com.enviroapps.eapharmics.vo.newstudy.DataEntryVO;
@@ -44,6 +47,7 @@ import com.enviroapps.eapharmics.vo.newstudy.RptUserPreferenceVO;
 @RequiredArgsConstructor
 public class NewStudyLoginService extends AbstractEAPharmicsService {
 
+	private static final Logger logger = LoggerFactory.getLogger(NewStudyLoginService.class);
 
 	/**
 	 * @param newStudyProductId
@@ -63,7 +67,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getAllNewStudyProductSummary", e);
+			logger.error("getAllNewStudyProductSummary", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -86,7 +90,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
          }
          throw e;
       } catch (RuntimeException e) {
-         logger.error(this, "getAllUnApprovedNewStudyProductSummary", e);
+         logger.error("getAllUnApprovedNewStudyProductSummary", e);
          throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
       }
       return list;
@@ -110,7 +114,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
          }
          throw e;
       } catch (RuntimeException e) {
-         logger.error(this, "getNewStudyProductsSummary", e);
+         logger.error("getNewStudyProductsSummary", e);
          throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
       }
       return list;
@@ -135,7 +139,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getNewStudyProductsSummary", e);
+			logger.error("getNewStudyProductsSummary", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -160,7 +164,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
          }
          throw e;
       } catch (RuntimeException e) {
-         logger.error(this, "getNewStudyProductsSummary", e);
+         logger.error("getNewStudyProductsSummary", e);
          throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
       }
       return list;
@@ -184,7 +188,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getNewStudyIntervalLabel", e);
+			logger.error("getNewStudyIntervalLabel", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -210,7 +214,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "updateNewStudyProduct", e);
+			logger.error("updateNewStudyProduct", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 		return list;
@@ -233,7 +237,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getNewStudyProduct", e);
+			logger.error("getNewStudyProduct", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 	}
@@ -258,7 +262,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getNewStudyProductAndProduct", e);
+			logger.error("getNewStudyProductAndProduct", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 	}
@@ -283,7 +287,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "addNewStudyProduct", e);
+			logger.error("addNewStudyProduct", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 		return list;
@@ -301,7 +305,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getAllLabels", e);
+			logger.error("getAllLabels", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 	}
@@ -324,7 +328,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getLabelPrintRequests", e);
+			logger.error("getLabelPrintRequests", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -348,7 +352,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getAllPendingLabelPrintRequestsDisplay", e);
+			logger.error("getAllPendingLabelPrintRequestsDisplay", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -373,7 +377,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getLabelPrintRequests", e);
+			logger.error("getLabelPrintRequests", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -396,7 +400,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "addLabelPrintRequest", e);
+			logger.error("addLabelPrintRequest", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 	}
@@ -419,7 +423,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "deleteLabelPrintRequest", e);
+			logger.error("deleteLabelPrintRequest", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 	}
@@ -437,7 +441,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 		}
 		throw e;
 	} catch (RuntimeException e) {
-		logger.error(this, "getLabelPrintRequests", e);
+		logger.error("getLabelPrintRequests", e);
 		throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 	}
 	return list;
@@ -452,7 +456,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			return list;
 
 		} catch (Exception e) {
-			logger.error(this, "getSequenceId", e);
+			logger.error("getSequenceId", e);
 			return null;
 		}
 
@@ -486,7 +490,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getNewStudySchedule", e);
+			logger.error("getNewStudySchedule", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 	}
@@ -506,7 +510,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getAllNewStudySummaries", e);
+			logger.error("getAllNewStudySummaries", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -528,7 +532,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "updateNewStudySchedules", e);
+			logger.error("updateNewStudySchedules", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 	}
@@ -544,7 +548,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getAllPendingLists", e);
+			logger.error("getAllPendingLists", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -568,7 +572,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getNewStudyTestResults", e);
+			logger.error("getNewStudyTestResults", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -590,7 +594,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 		}
 		throw e;
 	} catch (RuntimeException e) {
-		logger.error(this, "getNewStudyTestResultsChartData", e);
+		logger.error("getNewStudyTestResultsChartData", e);
 		throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 	}
 	return list;
@@ -619,7 +623,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "updateNewStudyTestResult", e);
+			logger.error("updateNewStudyTestResult", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 		return list;
@@ -638,7 +642,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "updateCDSTestUsageForm", e);
+			logger.error("updateCDSTestUsageForm", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 	}
@@ -662,7 +666,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getAllNewStudySummaries", e);
+			logger.error("getAllNewStudySummaries", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -688,7 +692,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getAllNewStudySummaries", e);
+			logger.error("getAllNewStudySummaries", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -707,7 +711,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
          }
          throw e;
       } catch (RuntimeException e) {
-         logger.error(this, "updateInventoryPullDate", e);
+         logger.error("updateInventoryPullDate", e);
          throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
       }   
       return list;
@@ -729,7 +733,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
          }
          throw e;
       } catch (RuntimeException e) {
-         logger.error(this, "getAllNewStudySummaries", e);
+         logger.error("getAllNewStudySummaries", e);
          throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
       }
       return list;
@@ -750,7 +754,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
              }
              throw e;
           } catch (RuntimeException e) {
-             logger.error(this, "getPendingReportCounts", e);
+             logger.error("getPendingReportCounts", e);
              throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
           }
       }
@@ -770,7 +774,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
         }
         throw e;
      } catch (RuntimeException e) {
-        logger.error(this, "updateInventoryTestStartDate", e);
+        logger.error("updateInventoryTestStartDate", e);
         throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
      }   
      return list;
@@ -791,7 +795,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
         }
         throw e;
      } catch (RuntimeException e) {
-        logger.error(this, "updateInventoryTestEndDate", e);
+        logger.error("updateInventoryTestEndDate", e);
         throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
      }   
      return list;
@@ -812,7 +816,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
         }
         throw e;
      } catch (RuntimeException e) {
-        logger.error(this, "updateInventoryInitialDate", e);
+        logger.error("updateInventoryInitialDate", e);
         throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
      }
      return list;
@@ -836,7 +840,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getStudyInventoryDestroyeds", e);
+			logger.error("getStudyInventoryDestroyeds", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -863,7 +867,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "saveStudyInventoryDestroyed", e);
+			logger.error("saveStudyInventoryDestroyed", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 	}
@@ -885,7 +889,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "copyLabel", e);
+			logger.error("copyLabel", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 	}
@@ -907,7 +911,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getProtocolReportFilterData", e);
+			logger.error("getProtocolReportFilterData", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 	}
@@ -928,7 +932,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
          }
          throw e;
       } catch (RuntimeException e) {
-         logger.error(this, "updateNewStudySchedules", e);
+         logger.error("updateNewStudySchedules", e);
          throw new EAPharmicsException("Unable to process request. Please contact support.");
       }
    }
@@ -951,7 +955,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
          }
          throw e;
       } catch (RuntimeException e) {
-         logger.error(this, "getAllNewStudySummaries", e);
+         logger.error("getAllNewStudySummaries", e);
          throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
       }
       return list;
@@ -970,7 +974,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
       }
       throw e;
    } catch (RuntimeException e) {
-      logger.error(this, "updateInventoryExtraPulled", e);
+      logger.error("updateInventoryExtraPulled", e);
       throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
    }   
       return list;
@@ -990,7 +994,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 	      }
 	      throw e;
 	   } catch (RuntimeException e) {
-	      logger.error(this, "restoreInventoryPull", e);
+	      logger.error("restoreInventoryPull", e);
 	      throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 	   }   
 	   return list;
@@ -1007,7 +1011,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 		   NewStudyLoginImpl impl = new NewStudyLoginImpl();
 		   return impl.getMultipleRegressionReportData(studyIds, productTestId, chkT0PercentCalc, lowerLimit, upperLimit);
 	   } catch (RuntimeException e) {
-	      logger.error(this, "getMultipleRegressionReportData", e);
+	      logger.error("getMultipleRegressionReportData", e);
 	      throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 	   }   
 	}
@@ -1017,7 +1021,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			NewStudyLoginImpl impl = new NewStudyLoginImpl();
 			   return impl.getAttachmentsForStudy(studyId);
 		   } catch (RuntimeException e) {
-		      logger.error(this, "getAttachmentsForStudy", e);
+		      logger.error("getAttachmentsForStudy", e);
 		      throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		   }
 	}
@@ -1027,7 +1031,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			NewStudyLoginImpl impl = new NewStudyLoginImpl();
 			   return impl.deleteAttachmentForStudy(studyId, fileName);
 		   } catch (RuntimeException e) {
-		      logger.error(this, "deleteAttachmentForStudy", e);
+		      logger.error("deleteAttachmentForStudy", e);
 		      throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		   }
 	}
@@ -1043,7 +1047,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 		   NewStudyLoginImpl impl = new NewStudyLoginImpl();
 			return impl.getSingleRegressionReportData(studyId, productTestId);
 	   } catch (RuntimeException e) {
-	      logger.error(this, "getSingleRegressionReportData", e);
+	      logger.error("getSingleRegressionReportData", e);
 	      throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 	   }   
 	}
@@ -1065,7 +1069,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 		   return impl.getSingleRegressionReportData(studyId, productTestId,
 					t0PercentCalc, lowerLimit, upperLimt);
 	   } catch (RuntimeException e) {
-	      logger.error(this, "getSingleRegressionReportData", e);
+	      logger.error("getSingleRegressionReportData", e);
 	      throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 	   }   
 	}
@@ -1089,7 +1093,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getNewStudyProductAndDifferentProduct", e);
+			logger.error("getNewStudyProductAndDifferentProduct", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 	}	
@@ -1112,7 +1116,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getDataEntryResults", e);
+			logger.error("getDataEntryResults", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 	}	
@@ -1135,7 +1139,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getDataEntryResultsSummary", e);
+			logger.error("getDataEntryResultsSummary", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 	}
@@ -1160,7 +1164,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
          }
          throw e;
       } catch (RuntimeException e) {
-         logger.error(this, "getAllNewStudySummaries", e);
+         logger.error("getAllNewStudySummaries", e);
          throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
       }
       return list;
@@ -1178,7 +1182,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
           }
           throw e;
        } catch (RuntimeException e) {
-          logger.error(this, "getCodeSwitchProductsForProduct", e);
+          logger.error("getCodeSwitchProductsForProduct", e);
           throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
        }
        return list;
@@ -1201,7 +1205,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
          }
          throw e;
       } catch (RuntimeException e) {
-         logger.error(this, "getRptUserPreferences", e);
+         logger.error("getRptUserPreferences", e);
          throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
       }
       return list;
@@ -1224,7 +1228,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
          }
          throw e;
       } catch (RuntimeException e) {
-         logger.error(this, "getRptUserPreferences", e);
+         logger.error("getRptUserPreferences", e);
          throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
       }
       return list; 
@@ -1247,7 +1251,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
          }
          throw e;
       } catch (RuntimeException e) {
-         logger.error(this, "updateRptUserPreference", e);
+         logger.error("updateRptUserPreference", e);
          throw new EAPharmicsException("Unable to process request. Please contact support.");
       }
       return list;
@@ -1270,7 +1274,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
          }
          throw e;
       } catch (RuntimeException e) {
-         logger.error(this, "updateRptUserPreference", e);
+         logger.error("updateRptUserPreference", e);
          throw new EAPharmicsException("Unable to process request. Please contact support.");
       }
       return list;
@@ -1316,7 +1320,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
          }
          throw e;
       } catch (RuntimeException e) {
-         logger.error(this, "getPendingSchedulerReportData", e);
+         logger.error("getPendingSchedulerReportData", e);
          throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
       }
       return list;
@@ -1365,7 +1369,7 @@ public class NewStudyLoginService extends AbstractEAPharmicsService {
             }
             throw e;
          } catch (RuntimeException e) {
-            logger.error(this, "getStabilityLogsReportData", e);
+            logger.error("getStabilityLogsReportData", e);
             throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
          }
          return list;

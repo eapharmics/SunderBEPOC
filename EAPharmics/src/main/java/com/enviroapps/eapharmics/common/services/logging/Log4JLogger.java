@@ -45,9 +45,6 @@ public final class Log4JLogger implements ILogger {
 				.getBoolean("log.stacktrace.enabled");
 		exceptionStackTraceLogEnabled = UtilityServiceFactory.getConfigurator()
 				.getBoolean("log.exception.stacktrace.enabled");
-		String log4jConfigFile = UtilityServiceFactory.getConfigurator()
-				.getAbsoluteFilePath("log.log4j.config.xml.file");
-		DOMConfigurator.configure(log4jConfigFile);
 		System.out
 				.println("Log4JLogger loaded: " + getClass().getClassLoader());
 	}

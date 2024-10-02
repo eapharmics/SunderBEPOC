@@ -3,20 +3,24 @@ package com.enviroapps.eapharmics.ui;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.enviroapps.eapharmics.barcodeutil.BarCodeGenerator;
+import com.enviroapps.eapharmics.util.LabelHelper;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import com.enviroapps.eapharmics.barcodeutil.BarCodeGenerator;
-import com.enviroapps.eapharmics.ui.security.SecurityService;
-import com.enviroapps.eapharmics.util.LabelHelper;
 
 public final class LabelServlet extends EAPharmicsServlet {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private static final Logger logger = LoggerFactory.getLogger(LabelServlet.class);
 
 	public synchronized void doGet (HttpServletRequest req, HttpServletResponse res)    
     throws ServletException, IOException {
@@ -104,7 +108,7 @@ public final class LabelServlet extends EAPharmicsServlet {
 //							+ "," + "Study Condition 1"
 //							+ "\n"
 //							;
-		          getLogger().error(this, "doGet", "An error occured in URL " + req.getRequestURL());
+		          logger.error("doGet", "An error occured in URL " + req.getRequestURL());
 		          res.sendRedirect(getServerErrorPage(req));
 		        }
 			}

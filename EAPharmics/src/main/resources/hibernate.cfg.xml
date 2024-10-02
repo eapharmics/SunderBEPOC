@@ -10,9 +10,9 @@
 
 		<!-- properties -->
 		<property name="connection.driver_class">oracle.jdbc.OracleDriver</property>
-		<property name="connection.url">jdbc:oracle:thin:@localhost:1521/XEPDB1</property>
+		<property name="connection.url">jdbc:oracle:thin:@localhost:1522:xe</property>
 		<property name="connection.username">EAPHARMICS</property>
-		<property name="connection.password">EAPHARMICS</property>
+		<property name="connection.password">env1r0app$</property>
 		<property name="dialect">org.hibernate.dialect.OracleDialect</property>
 		<property name="show_sql">false</property>
 		<property name="use_outer_join">false</property>
@@ -28,13 +28,13 @@
 		<property name="hibernate.c3p0.min_size">3</property> 
 		<property name="hibernate.c3p0.timeout">900</property> <!-- seconds --> 
 		<!-- mapping files -->
-		<mapping resource="com/enviroapps/eapharmics/bom/security/security.hbm.xml"/>
-		<mapping resource="com/enviroapps/eapharmics/bom/dictionary/dictionary.hbm.xml"/>
-		<mapping resource="com/enviroapps/eapharmics/bom/admin/admin.hbm.xml"/>
-		<mapping resource="com/enviroapps/eapharmics/bom/product/product.hbm.xml"/>
-		<mapping resource="com/enviroapps/eapharmics/bom/pharma/pharma.hbm.xml"/>
-		<mapping resource="com/enviroapps/eapharmics/bom/newstudy/newStudyLogin.hbm.xml"/>
-		<mapping resource="com/enviroapps/eapharmics/bom/dataaccessevaluation/dataAccessEvaluation.hbm.xml"/>
+		<mapping resource="security.hbm.xml"/>
+		<mapping resource="dictionary.hbm.xml"/>
+		<mapping resource="admin.hbm.xml"/>
+		<mapping resource="product.hbm.xml"/>
+		<mapping resource="pharma.hbm.xml"/>
+		<mapping resource="newStudyLogin.hbm.xml"/>
+		<mapping resource="dataAccessEvaluation.hbm.xml"/>
 	</session-factory>
 
 </hibernate-configuration>

@@ -1,7 +1,8 @@
 package com.enviroapps.eapharmics.persistence;
 
-import com.enviroapps.eapharmics.common.services.UtilityServiceFactory;
-import com.enviroapps.eapharmics.common.services.logging.ILogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.enviroapps.eapharmics.das.persistence.DataAccessConstants;
 import com.enviroapps.eapharmics.das.persistence.hibernate.HibernatePersistenceFactory;
 import com.enviroapps.eapharmics.das.persistence.hibernate.HibernatePersistenceManager;
@@ -9,12 +10,12 @@ import com.enviroapps.eapharmics.das.persistence.hibernate.HibernatePersistenceM
 
 public class SummaryReportFactory extends HibernatePersistenceFactory implements DataAccessConstants {
 
-	private static ILogger log = UtilityServiceFactory.getLogger();
+	private static final Logger logger = LoggerFactory.getLogger(SummaryReportFactory.class);
 
 	private SummaryReportFactory() {
 		persistenceManager = (HibernatePersistenceManager) HibernatePersistenceManagerFactory
 				.getInstance().getPersistenceManager();
-		log.debug(this, "SummaryReportFactory", persistenceManager);
+		logger.debug("SummaryReportFactory", persistenceManager);
 	}
 
 	private static SummaryReportFactory instance = new SummaryReportFactory();

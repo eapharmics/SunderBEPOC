@@ -2,9 +2,9 @@ package com.enviroapps.eapharmics.services;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import com.enviroapps.eapharmics.common.services.UtilityServiceFactory;
-import com.enviroapps.eapharmics.common.services.logging.ILogger;
 import com.enviroapps.eapharmics.exception.EAPharmicsException;
 import com.enviroapps.eapharmics.persistence.PharmaFactory;
 import com.enviroapps.eapharmics.ui.pharma.PharmaVO;
@@ -16,14 +16,14 @@ import com.enviroapps.eapharmics.ui.pharma.PharmaVO;
 public class PharmaImpl {
 
 	// Used for logging.
-	private ILogger log = UtilityServiceFactory.getLogger();
+	private static final Logger logger = LoggerFactory.getLogger(PharmaImpl.class);
 
 	private PharmaFactory pharmaFactory = PharmaFactory.getInstance();
 
 	public List getAllPharma()
 			throws EAPharmicsException {
 
-		log.debug(this, "getAllPharma in Pharma Impl", "********* getAllPharma *********");
+		logger.debug("getAllPharma in Pharma Impl", "********* getAllPharma *********");
 		List list = pharmaFactory.getAllPharma();
 		System.out.println("Values returned in Impl" + list);
 		return list;
@@ -31,7 +31,7 @@ public class PharmaImpl {
 
   public List getDictionary(String dictCode) throws EAPharmicsException
   {
-         log.debug(this, "getPackSize in Pharma Impl", "********* getPackSize *********");
+         logger.debug("getPackSize in Pharma Impl", "********* getPackSize *********");
          List list = pharmaFactory.getDictionary(dictCode);
          System.out.println("Values returned in Impl" + list);
          return list;
@@ -39,7 +39,7 @@ public class PharmaImpl {
 
   public List getProduct() throws EAPharmicsException
   {
-         log.debug(this, "getProduct in Pharma Impl", "********* getPackSize *********");
+         logger.debug("getProduct in Pharma Impl", "********* getPackSize *********");
          List list = pharmaFactory.getProduct();
          System.out.println("Values returned in PharmaImpl" + list);
          return list;
@@ -47,7 +47,7 @@ public class PharmaImpl {
 
 	//public void savePharma(Pharma pharma )
 	//throws EAPharmicsException {
-		//log.debug(this, "savePharma", "********* savePharma *********");
+		//logger.debug("savePharma", "********* savePharma *********");
 
 		//pharmaFactory.savePharma(pharma);
 	//}
@@ -55,7 +55,7 @@ public class PharmaImpl {
 
 	public void  savePharma(PharmaVO pharmaVO) throws EAPharmicsException {
 
-		log.debug(this, "PharmaImpl", "********* Saving Pharma Through Value Objects In PharmaImpl *********");
+		logger.debug("PharmaImpl", "********* Saving Pharma Through Value Objects In PharmaImpl *********");
 		PharmaVO pharmaimp = new PharmaVO();
 		//pharmaimp.setBatch_no(pharmaVO.getBatch_no());
 		pharmaimp.setProduct(pharmaVO.getProduct());
@@ -96,7 +96,7 @@ public class PharmaImpl {
 		pharmaimp.setReceivedby(pharmaVO.getReceivedby());
 		pharmaimp.setReceivedbydate(pharmaVO.getReceivedbydate());
 		pharmaFactory.savePharma(pharmaimp);
-		log.debug(this, "Gone to PharmaFactory for insert Hibernate actions", ".");
+		logger.debug("Gone to PharmaFactory for insert Hibernate actions", ".");
 		//return pharma;
 	}
 
@@ -105,7 +105,7 @@ public class PharmaImpl {
 
 	public void  updatePharma(PharmaVO pharmaVO) throws EAPharmicsException {
 
-      log.debug(this, "PharmaImpl", "********* Updating Pharma Through Value Objects In PharmaImpl *********");
+      logger.debug("PharmaImpl", "********* Updating Pharma Through Value Objects In PharmaImpl *********");
       PharmaVO pharmaimp = new PharmaVO();
       pharmaimp.setBatch_no(pharmaVO.getBatch_no());
       pharmaimp.setProduct(pharmaVO.getProduct());
@@ -146,7 +146,7 @@ public class PharmaImpl {
       pharmaimp.setReceivedby(pharmaVO.getReceivedby());
       pharmaimp.setReceivedbydate(pharmaVO.getReceivedbydate());
       pharmaFactory.updatePharma(pharmaimp);
-      log.debug(this, "Gone to PharmaFactory in update for Hibernate actions", ".");
+      logger.debug("Gone to PharmaFactory in update for Hibernate actions", ".");
       //return pharma;
    }
 

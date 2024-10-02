@@ -18,6 +18,8 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.enviroapps.eapharmics.bom.admin.ApplParameter;
 import com.enviroapps.eapharmics.bom.dictionary.DictionaryDetail;
@@ -36,8 +38,6 @@ import com.enviroapps.eapharmics.bom.newstudy.NewStudyTestResult;
 import com.enviroapps.eapharmics.bom.newstudy.StudyInventoryDestroyed;
 import com.enviroapps.eapharmics.bom.product.ProductTest;
 import com.enviroapps.eapharmics.common.Utility;
-import com.enviroapps.eapharmics.common.services.UtilityServiceFactory;
-import com.enviroapps.eapharmics.common.services.logging.ILogger;
 import com.enviroapps.eapharmics.das.persistence.DataAccessConstants;
 import com.enviroapps.eapharmics.das.persistence.hibernate.HibernatePersistenceFactory;
 import com.enviroapps.eapharmics.das.persistence.hibernate.HibernatePersistenceManager;
@@ -70,12 +70,12 @@ import com.enviroapps.eapharmics.vo.security.UserVO;
 public class NewStudyLoginFactory extends HibernatePersistenceFactory implements
 	DataAccessConstants {
 
-	private static ILogger log = UtilityServiceFactory.getLogger();
+	private static final Logger logger = LoggerFactory.getLogger(NewStudyLoginFactory.class);
 
 	private NewStudyLoginFactory() {
 		persistenceManager = (HibernatePersistenceManager) HibernatePersistenceManagerFactory
 				.getInstance().getPersistenceManager();
-		log.debug(this, "NewStudyLoginFactory", persistenceManager);
+		logger.debug("NewStudyLoginFactory", persistenceManager);
 	}
 
 	private static NewStudyLoginFactory instance = new NewStudyLoginFactory();

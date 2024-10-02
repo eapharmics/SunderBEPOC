@@ -8,12 +8,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.enviroapps.eapharmics.bom.newstudy.Image;
 import com.enviroapps.eapharmics.bom.newstudy.Label;
 import com.enviroapps.eapharmics.bom.newstudy.LabelData;
 import com.enviroapps.eapharmics.common.Utility;
 import com.enviroapps.eapharmics.common.services.UtilityServiceFactory;
 import com.enviroapps.eapharmics.exception.EAPharmicsException;
+import com.enviroapps.eapharmics.persistence.DictionaryFactory;
 import com.enviroapps.eapharmics.persistence.NewStudyLoginFactory;
 import com.enviroapps.eapharmics.services.AbstractServiceImpl;
 import com.enviroapps.eapharmics.ui.Constants;
@@ -24,6 +28,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class LabelHelper extends AbstractServiceImpl {
+	
+	private static final Logger logger = LoggerFactory.getLogger(LabelHelper.class);
 
     static String[] imgMime = new String[] {
         "application/octet-stream",
@@ -379,7 +385,7 @@ public class LabelHelper extends AbstractServiceImpl {
 //    		NewStudyLoginFactory.getInstance().updatePendingLabelPrintRequest(labelId, eaLabelPrintRequestsId, appUserId);
 //    		super.commitTransaction();
     	} catch (Exception e) {
-    		UtilityServiceFactory.getLogger().error(this, "getFilledLabelData", e);
+    		logger.error("getFilledLabelData", e);
         	try {
 				super.rollbackTransaction();
 			} catch (Exception e1) {
