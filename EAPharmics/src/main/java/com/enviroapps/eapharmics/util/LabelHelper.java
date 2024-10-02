@@ -274,7 +274,7 @@ public class LabelHelper extends AbstractServiceImpl {
         	}
         	return label;
     	} catch (Exception e) {
-    		UtilityServiceFactory.getLogger().error(this, "findCreateLabel", e);
+    		logger.error("findCreateLabel", e);
         	try {
 				super.rollbackTransaction();
 			} catch (Exception e1) {
