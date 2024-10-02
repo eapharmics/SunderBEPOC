@@ -3,24 +3,25 @@ package com.enviroapps.eapharmics.persistence;
 
 
 import java.util.List;
-import org.hibernate.Session;
+
 import org.hibernate.Criteria;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.ProjectionList;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
 import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.enviroapps.eapharmics.bom.pharma.Emp;
-import com.enviroapps.eapharmics.ui.pharma.PharmaVO;
-import com.enviroapps.eapharmics.ui.pharma.DictionaryVO;
-import com.enviroapps.eapharmics.common.services.UtilityServiceFactory;
-import com.enviroapps.eapharmics.common.services.logging.ILogger;
 import com.enviroapps.eapharmics.das.persistence.DataAccessConstants;
 import com.enviroapps.eapharmics.das.persistence.hibernate.HibernatePersistenceFactory;
 import com.enviroapps.eapharmics.das.persistence.hibernate.HibernatePersistenceManager;
 import com.enviroapps.eapharmics.das.persistence.hibernate.HibernatePersistenceManagerFactory;
+import com.enviroapps.eapharmics.ui.pharma.DictionaryVO;
+import com.enviroapps.eapharmics.ui.pharma.PharmaVO;
 
 
 /**
@@ -31,12 +32,12 @@ public class PharmaFactory extends HibernatePersistenceFactory implements
                                                               DataAccessConstants
 {
 
-   private static ILogger log = UtilityServiceFactory.getLogger();
+	private static final Logger logger = LoggerFactory.getLogger(PharmaFactory.class);
 
    private PharmaFactory()
    {
       persistenceManager = (HibernatePersistenceManager) HibernatePersistenceManagerFactory.getInstance().getPersistenceManager();
-      log.debug(this, "PharmaFactory", persistenceManager);
+      logger.debug("PharmaFactory", persistenceManager);
    }
 
    private static PharmaFactory instance = new PharmaFactory();
@@ -66,8 +67,7 @@ public class PharmaFactory extends HibernatePersistenceFactory implements
    {
       Session session = persistenceManager.getCurrentSession();
       Criteria criteria = session.createCriteria(PharmaVO.class);
-      log.debug(this,
-                "Criteria in Pharma Factory",
+      logger.debug("Criteria in Pharma Factory",
                 "********* getAllPharma *********");
       List list = criteria.list();
       System.out.println("Values of criteria" + list);
@@ -140,8 +140,7 @@ public class PharmaFactory extends HibernatePersistenceFactory implements
     */
    public void updatePharma(PharmaVO pharma)
    {
-      log.debug(this,
-                "Working on Store Functionality for Update",
+      logger.debug("Working on Store Functionality for Update",
                 "********* UpdatePharma *********");
       Configuration configuration = new Configuration();
       SessionFactory  sessionFactory = configuration.configure().buildSessionFactory();
@@ -151,8 +150,7 @@ public class PharmaFactory extends HibernatePersistenceFactory implements
       session.update(pharma);
       transaction.commit();
       session.close();
-      log.debug(this,
-                "Done with  Store Functionality for Update",
+      logger.debug("Done with  Store Functionality for Update",
                 "********* UpdatePharma *********");
       //super.store(pharma);
       

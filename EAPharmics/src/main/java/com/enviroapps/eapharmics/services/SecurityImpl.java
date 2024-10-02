@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Hibernate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.enviroapps.eapharmics.bom.admin.ApplParameter;
 import com.enviroapps.eapharmics.bom.admin.Location;
@@ -48,6 +50,8 @@ import jakarta.servlet.http.HttpSession;
  * 
  */
 public class SecurityImpl extends AbstractServiceImpl {
+	
+	private static final Logger logger = LoggerFactory.getLogger(SecurityImpl.class);
 
 	private SecurityFactory securityFactory = SecurityFactory.getInstance();
 	private AdminFactory adminFactory = AdminFactory.getInstance();
@@ -360,7 +364,7 @@ public class SecurityImpl extends AbstractServiceImpl {
 	 */
 	public UserVO changePassword(String userId, String password,
 			String newPassword) throws EAPharmicsException {
-		log.debug(this, "changePassword",
+		logger.debug("changePassword",
 						"********* Password Change *********");
 		AppUser bomObject = securityFactory.getUser(userId);
 		// here we need to pass the hash of the old password entered
@@ -450,7 +454,7 @@ public class SecurityImpl extends AbstractServiceImpl {
 	 */
 	public AppUser getUser(String userName) throws EAPharmicsException {
 
-		log.debug(this, "getUser", "********* authenticate user *********");
+		logger.debug("getUser", "********* authenticate user *********");
 		AppUser user = securityFactory.getUser(userName);
 		if (user == null) {
 			throw new EAPharmicsException("Invalid AppUser Id");

@@ -7,6 +7,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.enviroapps.eapharmics.exception.EAPharmicsException;
 import com.enviroapps.eapharmics.services.DictionaryImpl;
 import com.enviroapps.eapharmics.ui.AbstractEAPharmicsService;
+import com.enviroapps.eapharmics.ui.daes.DataAccessEvaluationService;
 import com.enviroapps.eapharmics.vo.dictionary.DictionaryDetailVO;
 import com.enviroapps.eapharmics.vo.dictionary.DictionaryMasterVO;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -33,6 +36,8 @@ import lombok.RequiredArgsConstructor;
 
 public class DictionaryService extends AbstractEAPharmicsService {
 
+	private static final Logger logger = LoggerFactory.getLogger(DictionaryService.class); 
+	
 	/**
 	 * @param dictionaryCode
 	 * @return
@@ -51,7 +56,7 @@ public class DictionaryService extends AbstractEAPharmicsService {
 			list.add(impl.getDictionaryDetailsForCode(dictionaryCode2));
 			return list;
 		} catch (RuntimeException e) {
-			logger.error(this, "getMultipleDictionaries", e);
+			logger.error("getMultipleDictionaries", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 	}
@@ -71,7 +76,7 @@ public class DictionaryService extends AbstractEAPharmicsService {
 			DictionaryMasterVO voObject = impl.getDictionaryMasterForCode(dictionaryCode);
 			return voObject;
 		} catch (RuntimeException e) {
-			logger.error(this, "getDictionaryMasterForCode", e);
+			logger.error("getDictionaryMasterForCode", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 	}
@@ -91,7 +96,7 @@ public class DictionaryService extends AbstractEAPharmicsService {
 			DictionaryImpl impl = new DictionaryImpl();
 			list = impl.getDictionaryDetailsForCode(dictionaryCode);			
 		} catch (RuntimeException e) {
-			logger.error(this, "getDictionaryDetails", e);
+			logger.error("getDictionaryDetails", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -114,7 +119,7 @@ public class DictionaryService extends AbstractEAPharmicsService {
 				list.add(impl.getDictionaryDetailsForCode(code));
 			}
 		} catch (RuntimeException e) {
-			logger.error(this, "getMultipleDictionaryDetails", e);
+			logger.error("getMultipleDictionaryDetails", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -141,7 +146,7 @@ public class DictionaryService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "updateDictionaryDetail", e);
+			logger.error("updateDictionaryDetail", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 		return list;
@@ -175,7 +180,7 @@ public class DictionaryService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "updateDictionaryDetail", e);
+			logger.error("updateDictionaryDetail", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 	}
@@ -201,7 +206,7 @@ public class DictionaryService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "addDictionaryDetail", e);
+			logger.error("addDictionaryDetail", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 		//setContext(user);
@@ -222,7 +227,7 @@ public class DictionaryService extends AbstractEAPharmicsService {
 			DictionaryImpl impl = new DictionaryImpl();
 			list = impl.getAllDictionaryDetails();			
 		} catch (RuntimeException e) {
-			logger.error(this, "getDictionaryDetails", e);
+			logger.error("getDictionaryDetails", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -248,7 +253,7 @@ public class DictionaryService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "updateDictionaryDetail", e);
+			logger.error("updateDictionaryDetail", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 		return list;
@@ -270,7 +275,7 @@ public List<DictionaryDetailVO> getAllDictionary()
       DictionaryImpl impl = new DictionaryImpl();
       list = impl.getAllDictionary();       
    } catch (RuntimeException e) {
-      logger.error(this, "getDictionaryDetails", e);
+      logger.error("getDictionaryDetails", e);
       throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
    }
    return list;

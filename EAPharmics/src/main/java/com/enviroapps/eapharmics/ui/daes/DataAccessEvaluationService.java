@@ -2,6 +2,8 @@ package com.enviroapps.eapharmics.ui.daes;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,7 @@ import com.enviroapps.eapharmics.exception.EAPharmicsException;
 import com.enviroapps.eapharmics.services.DataAccessEvaluationImpl;
 import com.enviroapps.eapharmics.services.ProductImpl;
 import com.enviroapps.eapharmics.ui.AbstractEAPharmicsService;
+import com.enviroapps.eapharmics.ui.admin.AdminService;
 import com.enviroapps.eapharmics.vo.dataaccessevaluation.BarCodeSearchResultVO;
 import com.enviroapps.eapharmics.vo.dataaccessevaluation.DataAccessEvaluationVO;
 import com.enviroapps.eapharmics.vo.dataaccessevaluation.GraphDataVO;
@@ -26,6 +29,8 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/eapharmics/dataaccess")
 @RequiredArgsConstructor
 public class DataAccessEvaluationService extends AbstractEAPharmicsService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(DataAccessEvaluationService.class);
 	
 	/**
 	 * @param productId
@@ -58,7 +63,7 @@ public class DataAccessEvaluationService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getNewStudyTestResultsChartData", e);
+			logger.error("getNewStudyTestResultsChartData", e);
 			throw new EAPharmicsException(
 					"Unable to process request. Please contact support.\n"
 							+ e.getMessage());
@@ -110,7 +115,7 @@ public class DataAccessEvaluationService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getAllDataAccessEvaluationForStudyId", e);
+			logger.error("getAllDataAccessEvaluationForStudyId", e);
 			throw new EAPharmicsException(
 					"Unable to process request. Please contact support.\n"
 							+ e.getMessage());
@@ -138,7 +143,7 @@ public class DataAccessEvaluationService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getNewStudyDetails", e);
+			logger.error("getNewStudyDetails", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 		return list;
@@ -182,7 +187,7 @@ public class DataAccessEvaluationService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getNewStudyTestResultsChartData", e);
+			logger.error("getNewStudyTestResultsChartData", e);
 			throw new EAPharmicsException(
 					"Unable to process request. Please contact support.\n"
 							+ e.getMessage());
@@ -226,7 +231,7 @@ public class DataAccessEvaluationService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getChartData", e);
+			logger.error("getChartData", e);
 			throw new EAPharmicsException(
 					"Unable to process request. Please contact support.\n"
 							+ e.getMessage());
@@ -264,7 +269,7 @@ public class DataAccessEvaluationService extends AbstractEAPharmicsService {
 		}
 		throw e;
 	} catch (RuntimeException e) {
-		logger.error(this, "getChartDisplayParameters", e);
+		logger.error("getChartDisplayParameters", e);
 		throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 	}
 	return list;
@@ -301,7 +306,7 @@ public class DataAccessEvaluationService extends AbstractEAPharmicsService {
 		}
 		throw e;
 	} catch (RuntimeException e) {
-		logger.error(this, "getChartDisplayParameters", e);
+		logger.error("getChartDisplayParameters", e);
 		throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 	}
 	return list;
@@ -333,7 +338,7 @@ public class DataAccessEvaluationService extends AbstractEAPharmicsService {
 		}
 		throw e;
 	} catch (RuntimeException e) {
-		logger.error(this, "getNumberOfResults", e);
+		logger.error("getNumberOfResults", e);
 		throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 	}
 	return list;

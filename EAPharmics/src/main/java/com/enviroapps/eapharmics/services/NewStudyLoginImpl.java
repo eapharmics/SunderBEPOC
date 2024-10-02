@@ -10,6 +10,9 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.enviroapps.eapharmics.bom.newstudy.Label;
 import com.enviroapps.eapharmics.bom.newstudy.LabelPrintRequest;
 import com.enviroapps.eapharmics.bom.newstudy.LabelPrintRequestDetail;
@@ -61,7 +64,8 @@ import com.enviroapps.eapharmics.vo.security.UserVO;
  *
  */
 public class NewStudyLoginImpl extends AbstractServiceImpl {
-
+	
+	private static final Logger logger = LoggerFactory.getLogger(NewStudyLoginImpl.class);
 
 	private NewStudyLoginFactory newStudyLoginFactory = NewStudyLoginFactory.getInstance();
 	private ProductFactory productFactory = ProductFactory.getInstance();
@@ -766,7 +770,7 @@ public class NewStudyLoginImpl extends AbstractServiceImpl {
 	
 	public List getSequenceId(Date stabilityDate) throws EAPharmicsException {
 
-		log.debug(this, "getAllPharma in Pharma Impl",
+		logger.debug("getAllPharma in Pharma Impl",
 				"********* getAllPharma *********");
 		List list = newStudyLoginFactory.getSequenceId(stabilityDate);
 		return list;

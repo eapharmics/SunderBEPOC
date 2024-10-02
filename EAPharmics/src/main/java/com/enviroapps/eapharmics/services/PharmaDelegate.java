@@ -2,8 +2,10 @@ package com.enviroapps.eapharmics.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.enviroapps.eapharmics.common.services.UtilityServiceFactory;
-import com.enviroapps.eapharmics.common.services.logging.ILogger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.enviroapps.eapharmics.exception.EAPharmicsException;
 import com.enviroapps.eapharmics.ui.pharma.PharmaVO;
 
@@ -14,7 +16,7 @@ import com.enviroapps.eapharmics.ui.pharma.PharmaVO;
 public class PharmaDelegate extends AbstractServiceImpl {
 	
 	private PharmaImpl impl = null;
-	private ILogger log = UtilityServiceFactory.getLogger();
+	private static final Logger logger = LoggerFactory.getLogger(PharmaDelegate.class);
 	/**
 	 * @param useLocal
 	 */
@@ -33,7 +35,7 @@ public class PharmaDelegate extends AbstractServiceImpl {
 			throws EAPharmicsException {
 		List list = new ArrayList();
 		try {
-			log.debug(this, "getAllPharma in Pharma Delegate", "********* getAllPharma *********");
+			logger.debug("getAllPharma in Pharma Delegate", "********* getAllPharma *********");
 			list = impl.getAllPharma();
 			System.out.println("Values returned in PharmaImpl" + list);
 			return list;
@@ -47,7 +49,7 @@ public class PharmaDelegate extends AbstractServiceImpl {
    throws EAPharmicsException {
      List list = new ArrayList();
         try {
-   log.debug(this, "getPackSize in Pharma Delegate", "********* getPackSize *********");
+   logger.debug("getPackSize in Pharma Delegate", "********* getPackSize *********");
    list = impl.getDictionary(dictCode);
    System.out.println("Values returned in PharmaImpl" + list);
    return list;
@@ -62,7 +64,7 @@ public class PharmaDelegate extends AbstractServiceImpl {
    throws EAPharmicsException {
      List list = new ArrayList();
         try {
-   log.debug(this, "getProduct in Pharma Delegate", "********* getPackSize *********");
+   logger.debug("getProduct in Pharma Delegate", "********* getPackSize *********");
    list = impl.getProduct();
    System.out.println("Values returned in PharmaDelegate" + list);
    return list;
@@ -78,13 +80,13 @@ public class PharmaDelegate extends AbstractServiceImpl {
 	public void savePharma(PharmaVO pharmavo) throws EAPharmicsException {
 		try {
 			
-			log.debug(this, "About to Begin Transaction in PharmaDelegate", "********* Saving Pharma Through Value Objects In PharmaDelegate *********");
+			logger.debug("About to Begin Transaction in PharmaDelegate", "********* Saving Pharma Through Value Objects In PharmaDelegate *********");
 			super.beginTransaction();
-			log.debug(this, "Transaction has began in PharmaDelegate", "********* Saving Pharma Through Value Objects In PharmaDelegate *********");
+			logger.debug("Transaction has began in PharmaDelegate", "********* Saving Pharma Through Value Objects In PharmaDelegate *********");
 			impl.savePharma(pharmavo);
-			log.debug(this, "Transaction complete in PharmaDelegate", "********* Saving Pharma Through Value Objects In PharmaDelegate *********");
+			logger.debug("Transaction complete in PharmaDelegate", "********* Saving Pharma Through Value Objects In PharmaDelegate *********");
 			super.commitTransaction();
-			log.debug(this, "Commited  the Transaction in PharmaDelegate,Impl ",".");
+			logger.debug("Commited  the Transaction in PharmaDelegate,Impl ",".");
 			//return pharma;
 		} catch (Exception e) {
 			logException("createPharma", e);
@@ -102,13 +104,13 @@ public class PharmaDelegate extends AbstractServiceImpl {
 	public void updatePharma(PharmaVO pharmavo) throws EAPharmicsException {
       try {
          
-         log.debug(this, "About to Begin Transaction in PharmaDelegate for update", "********* Updating Pharma Through Value Objects In PharmaDelegate *********");
+         logger.debug("About to Begin Transaction in PharmaDelegate for update", "********* Updating Pharma Through Value Objects In PharmaDelegate *********");
          super.beginTransaction();
-         log.debug(this, "Transaction has began in PharmaDelegate for update", "********* Updating Pharma Through Value Objects In PharmaDelegate *********");
+         logger.debug("Transaction has began in PharmaDelegate for update", "********* Updating Pharma Through Value Objects In PharmaDelegate *********");
          impl.updatePharma(pharmavo);
-         log.debug(this, "Transaction complete in PharmaDelegate for update", "********* Updating Pharma Through Value Objects In PharmaDelegate *********");
+         logger.debug("Transaction complete in PharmaDelegate for update", "********* Updating Pharma Through Value Objects In PharmaDelegate *********");
          super.commitTransaction();
-         log.debug(this, "Commited  the Transaction in PharmaDelegate for update ,Impl ",".");
+         logger.debug("Commited  the Transaction in PharmaDelegate for update ,Impl ",".");
          //return pharma;
       } catch (Exception e) {
          logException("updatePharma", e);

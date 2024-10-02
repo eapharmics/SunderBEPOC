@@ -12,6 +12,8 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.enviroapps.eapharmics.bom.security.AppAccessTemplate;
 import com.enviroapps.eapharmics.bom.security.AppArea;
@@ -24,8 +26,6 @@ import com.enviroapps.eapharmics.bom.security.EditReason;
 import com.enviroapps.eapharmics.bom.security.ModuleAccessAudit;
 import com.enviroapps.eapharmics.bom.security.ProductRegistration;
 import com.enviroapps.eapharmics.common.Utility;
-import com.enviroapps.eapharmics.common.services.UtilityServiceFactory;
-import com.enviroapps.eapharmics.common.services.logging.ILogger;
 import com.enviroapps.eapharmics.das.persistence.DataAccessConstants;
 import com.enviroapps.eapharmics.das.persistence.hibernate.HibernatePersistenceFactory;
 import com.enviroapps.eapharmics.das.persistence.hibernate.HibernatePersistenceManager;
@@ -44,12 +44,12 @@ public class SecurityFactory extends HibernatePersistenceFactory implements
                                                                 DataAccessConstants
 {
 
-   private static ILogger log = UtilityServiceFactory.getLogger();
+	private static final Logger logger = LoggerFactory.getLogger(SecurityFactory.class);
 
    private SecurityFactory()
    {
       persistenceManager = (HibernatePersistenceManager) HibernatePersistenceManagerFactory.getInstance().getPersistenceManager();
-      log.debug(this, "SecurityFactory", persistenceManager);
+      logger.debug("SecurityFactory", persistenceManager);
    }
 
    private static SecurityFactory instance = new SecurityFactory();

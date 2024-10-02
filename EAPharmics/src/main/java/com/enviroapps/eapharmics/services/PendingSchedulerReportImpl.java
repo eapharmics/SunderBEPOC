@@ -10,17 +10,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import ar.com.fdvs.dj.core.DynamicJasperHelper;
-import ar.com.fdvs.dj.core.layout.ClassicLayoutManager;
-import ar.com.fdvs.dj.domain.CustomExpression;
-import ar.com.fdvs.dj.domain.DynamicReport;
-import ar.com.fdvs.dj.domain.builders.ColumnBuilder;
-import ar.com.fdvs.dj.domain.builders.FastReportBuilder;
-import ar.com.fdvs.dj.domain.entities.columns.AbstractColumn;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.enviroapps.eapharmics.common.Utility;
 import com.enviroapps.eapharmics.exception.EAPharmicsException;
@@ -30,7 +21,21 @@ import com.enviroapps.eapharmics.vo.newstudy.NewStudySummaryVO;
 import com.enviroapps.eapharmics.vo.newstudy.RptUserPreferenceVO;
 import com.enviroapps.eapharmics.vo.reports.ReportsVO;
 
+import ar.com.fdvs.dj.core.DynamicJasperHelper;
+import ar.com.fdvs.dj.core.layout.ClassicLayoutManager;
+import ar.com.fdvs.dj.domain.CustomExpression;
+import ar.com.fdvs.dj.domain.DynamicReport;
+import ar.com.fdvs.dj.domain.builders.ColumnBuilder;
+import ar.com.fdvs.dj.domain.builders.FastReportBuilder;
+import ar.com.fdvs.dj.domain.entities.columns.AbstractColumn;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+
 public class PendingSchedulerReportImpl extends DynamicReportImpl {
+	
+	private static final Logger logger = LoggerFactory.getLogger(PendingSchedulerReportImpl.class);
 	
 	public PendingSchedulerReportImpl() {
 	}
@@ -289,7 +294,7 @@ public class PendingSchedulerReportImpl extends DynamicReportImpl {
 			outputStream.close();
 	        returnUrl = EAReportsHelper.REPORTS_BASE_URL + outputFile.getName();
 		} catch(Throwable e) {
-			log.error(this, "runReport", e);
+			logger.error("runReport", e);
 			throw new EAPharmicsException("Error running report");
 		}
 	

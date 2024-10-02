@@ -96,7 +96,7 @@ public class UtilityServiceFactory {
 					// Instantiate configuration service and load the parameters
 					String configuratorClassName = "com.enviroapps.eapharmics.common.services.configurator.GenericConfigurator";
 					Configurator newConfigurator = (Configurator) createServiceObject(configuratorClassName);
-					newConfigurator.loadConfigParameters();
+					/* newConfigurator.loadConfigParameters(); */
 					configurator = newConfigurator;
 					return configurator;
 				}

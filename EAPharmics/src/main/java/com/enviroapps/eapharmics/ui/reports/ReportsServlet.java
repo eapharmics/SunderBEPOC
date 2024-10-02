@@ -3,18 +3,22 @@ package com.enviroapps.eapharmics.ui.reports;
 import java.io.File;
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import com.enviroapps.eapharmics.common.Utility;
 import com.enviroapps.eapharmics.common.services.UtilityServiceFactory;
+import com.enviroapps.eapharmics.persistence.DictionaryFactory;
 import com.enviroapps.eapharmics.ui.EAPharmicsServlet;
 
 
 public class ReportsServlet extends EAPharmicsServlet {
 
-	
+	private static final Logger logger = LoggerFactory.getLogger(ReportsServlet.class);
 	private static final long serialVersionUID = -7127254932602720846L;
 	private static final String APPLICATION_REPORTS_LOCATION="application.reports.location";
 
@@ -55,17 +59,17 @@ public class ReportsServlet extends EAPharmicsServlet {
         	response.getOutputStream().flush();
         	response.getOutputStream().close();
 		} catch (IOException e) {
-			UtilityServiceFactory.getLogger().error(this, "service", e);
+			logger.error("service", e);
 			response.getOutputStream().write(("File Not Available").getBytes());
 		}
 		
 		try {
 			File outputFile =new File(fileName);
 			if (!outputFile.delete()) {
-				UtilityServiceFactory.getLogger().error("ReportsServlet", "Delete failed", fileName);
+				logger.error("ReportsServlet", "Delete failed", fileName);
 			}
 		} catch(Exception e) {
-			UtilityServiceFactory.getLogger().error("ReportsServlet", "Delete failed", e);
+			logger.error("ReportsServlet", "Delete failed", e);
 		}		
 	}
 

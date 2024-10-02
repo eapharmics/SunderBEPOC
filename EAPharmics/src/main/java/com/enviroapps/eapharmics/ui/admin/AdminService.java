@@ -3,6 +3,8 @@ package com.enviroapps.eapharmics.ui.admin;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 
 public class AdminService extends AbstractEAPharmicsService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(AdminService.class);
 
 
 	/**
@@ -44,7 +48,7 @@ public class AdminService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getApplParameters", e);
+			logger.error("getApplParameters", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 	}
@@ -70,7 +74,7 @@ public class AdminService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "updateApplParameter", e);
+			logger.error("updateApplParameter", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 	}
@@ -96,7 +100,7 @@ public class AdminService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "addApplParameter", e);
+			logger.error("addApplParameter", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 	}
@@ -120,7 +124,7 @@ public class AdminService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getLocations", e);
+			logger.error("getLocations", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 	}
@@ -146,7 +150,7 @@ public class AdminService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "updateLocation", e);
+			logger.error("updateLocation", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 	}
@@ -172,7 +176,7 @@ public class AdminService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "addLocation", e);
+			logger.error("addLocation", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.");
 		}
 	}
@@ -195,7 +199,7 @@ public class AdminService extends AbstractEAPharmicsService {
 			}
 			throw e;
 		} catch (RuntimeException e) {
-			logger.error(this, "getAllTimezoneNames", e);
+			logger.error("getAllTimezoneNames", e);
 			throw new EAPharmicsException("Unable to process request. Please contact support.\n" + e.getMessage());
 		}
 	}

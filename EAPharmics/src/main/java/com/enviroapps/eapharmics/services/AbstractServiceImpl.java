@@ -1,7 +1,8 @@
 package com.enviroapps.eapharmics.services;
 
-import com.enviroapps.eapharmics.common.services.UtilityServiceFactory;
-import com.enviroapps.eapharmics.common.services.logging.ILogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.enviroapps.eapharmics.das.persistence.hibernate.HibernatePersistenceManager;
 
 /**
@@ -12,12 +13,12 @@ import com.enviroapps.eapharmics.das.persistence.hibernate.HibernatePersistenceM
  * comments go to Window>Preferences>Java>Code Generation.
  */
 public abstract class AbstractServiceImpl {
+	
+	private static final Logger logger = LoggerFactory.getLogger(AbstractServiceImpl.class);
+	
 	// Used to control transactions.
 	protected HibernatePersistenceManager persistenceManager = null;
 
-	// Used for logging.
-	protected ILogger log = UtilityServiceFactory.getLogger();
-	
 	/**
 	 * Constructor for AbstractServiceImpl.
 	 */
@@ -32,7 +33,7 @@ public abstract class AbstractServiceImpl {
 	 */
 	protected void logException(String methodName, Exception e) {
 		// log remote exception
-		UtilityServiceFactory.getLogger().error(this, methodName, e);
+		logger.error(methodName, e);
 	}
 
 	/**

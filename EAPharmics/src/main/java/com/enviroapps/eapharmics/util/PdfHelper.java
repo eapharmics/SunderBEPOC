@@ -7,6 +7,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.enviroapps.eapharmics.common.services.UtilityServiceFactory;
 import com.lowagie.text.Document;
 import com.lowagie.text.Rectangle;
@@ -18,6 +21,9 @@ import com.lowagie.text.pdf.PdfWriter;
 
 
 public class PdfHelper {
+	
+	private static final Logger logger = LoggerFactory.getLogger(PdfHelper.class);
+	
 	final static float POINTS_PER_INCH = 72f;
 	final static float INCHES_TO_ADD = 0.5f;
 	public static void main(String[] args) {
@@ -77,8 +83,8 @@ public class PdfHelper {
 		    page = writer.getImportedPage(pdfReader, currentPageNumber);
 		    
 		    /*
-		     * x’ = a * x + c * y + e;
-		     * y’ = b * x + d * y + f;
+		     * xï¿½ = a * x + c * y + e;
+		     * yï¿½ = b * x + d * y + f;
 		     */
 		    if (rotate > 0) {
 		    	/*
@@ -180,10 +186,10 @@ public class PdfHelper {
 			try {
 				File file =new File(iterator.next());
 				if (!file.delete()) {
-					UtilityServiceFactory.getLogger().error("ReportsServlet", "Delete failed", file.getName());
+					logger.error("ReportsServlet", "Delete failed", file.getName());
 				}
 			} catch(Exception e) {
-				UtilityServiceFactory.getLogger().error("ReportsServlet", "Delete failed", e);
+				logger.error("ReportsServlet", "Delete failed", e);
 			}
 		}
 		
