@@ -226,28 +226,21 @@ public class DictionaryFactory extends HibernatePersistenceFactory implements
 	 */
 	public int getMaxDetailDisplayOrder(String dictionaryCode) throws EAPharmicsException {
 		int displayOrder = 0;
-		Session session = persistenceManager.getCurrentSession();
-		DictionaryMaster master = getDictionaryMasterForCode(dictionaryCode);
-		if (master == null) {
-			throw new EAPharmicsException("Cannot find Dictionary Master for code " + dictionaryCode);
-		}
-		String sql = "SELECT MAX(DISPLAY_ORDER) AS DISPLAY_ORDER FROM EA_DICTIONARY_DETAIL WHERE DICTIONARY_CODE='" + dictionaryCode +"'";
-		if (master.getGlobalDictionary() == true) {
-			//global dictionaries don't have location ids  
-			sql = sql + " AND LOCATION_ID IS NULL";
-		} else {
-			sql = sql + " AND LOCATION_ID=" + super.getCurrentLocationId();
-		}
-		//Get the last used display order for this dictionary code
-		//and add 1 and return
-		List details = session.createSQLQuery(sql)
-		 .addScalar("DISPLAY_ORDER", Hibernate.INTEGER).list();
-		if (details != null && details.size() > 0) {
-			if (details.get(0) != null) {
-				displayOrder = ((Integer) details.get(0)).intValue();
-				return displayOrder + 1;
-			}
-		}
+		/*
+		 * Session session = persistenceManager.getCurrentSession(); DictionaryMaster
+		 * master = getDictionaryMasterForCode(dictionaryCode); if (master == null) {
+		 * throw new EAPharmicsException("Cannot find Dictionary Master for code " +
+		 * dictionaryCode); } String sql =
+		 * "SELECT MAX(DISPLAY_ORDER) AS DISPLAY_ORDER FROM EA_DICTIONARY_DETAIL WHERE DICTIONARY_CODE='"
+		 * + dictionaryCode +"'"; if (master.getGlobalDictionary() == true) { //global
+		 * dictionaries don't have location ids sql = sql + " AND LOCATION_ID IS NULL";
+		 * } else { sql = sql + " AND LOCATION_ID=" + super.getCurrentLocationId(); }
+		 * //Get the last used display order for this dictionary code //and add 1 and
+		 * return List details = session.createSQLQuery(sql) .addScalar("DISPLAY_ORDER",
+		 * Hibernate.INTEGER).list(); if (details != null && details.size() > 0) { if
+		 * (details.get(0) != null) { displayOrder = ((Integer)
+		 * details.get(0)).intValue(); return displayOrder + 1; } }
+		 */
 		return displayOrder == 0 ? 1:displayOrder;
 	}
 	
