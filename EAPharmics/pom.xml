@@ -8,10 +8,12 @@
 		<version>3.3.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.enviroapps</groupId>
-	<artifactId>EAPharmics</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>EAPharmics</name>
+	
+	<groupId>com.eapharmics</groupId>
+	<artifactId>eapharmicsapi</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+	<name>eapharmicsapi</name>
 	<description>EAPharmics API Application</description>
 	<url/>
 	<licenses>
